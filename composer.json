@@ -14,8 +14,8 @@
     "require": {
         "php" : "~7.2",
         "hgabka/utils-bundle": "^4.0",
-        "symfony/framework-bundle": "^4.1"
-        "gedmo/doctrine-extensions": "2.3.*",
+        "symfony/framework-bundle": "^4.1",
+        "stof/doctrine-extensions-bundle": "~1.1",
         "hgabka/media-bundle": "^4.0"
     },
     "autoload": {
