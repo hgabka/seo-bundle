@@ -2,5 +2,6 @@
 .idea
 composer.lock
 composer.phar
-vendor/*
+vendor
 *.orig
+build
