@@ -1,5 +1,5 @@
 # Media
-seo:
+hg_seo:
     robots:
         tip: "Tip:"
         warning: Ez csak egy alapértelmezett érték és példa, nincsen robots.txt feltöltve

@@ -1,7 +1,8 @@
 <?php
 
-namespace Kunstmaan\SeoBundle\Form;
+namespace Hgabka\SeoBundle\Form;
 
+use Hgabka\SeoBundle\Entity\Robots;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,13 +32,13 @@ class RobotsType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'kunstmaanseobundle_settings_form_type';
+        return 'hgabkaseobundle_settings_form_type';
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Kunstmaan\SeoBundle\Entity\Robots',
+            'data_class' => Robots::class,
         ]);
     }
 }

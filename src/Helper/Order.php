@@ -1,6 +1,6 @@
 <?php
 
-namespace Kunstmaan\SeoBundle\Helper;
+namespace Hgabka\SeoBundle\Helper;
 
 /**
  * Simple helper class to do E-Commerce Tracking.

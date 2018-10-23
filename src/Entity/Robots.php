@@ -1,19 +1,49 @@
 <?php
 
-namespace Kunstmaan\SeoBundle\Entity;
+namespace Hgabka\SeoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Kunstmaan\AdminBundle\Entity\AbstractEntity;
-use Kunstmaan\SeoBundle\Form\RobotsType;
+use Hgabka\SeoBundle\Form\RobotsType;
 
 /**
  * Robots.txt data.
  *
  * @ORM\Entity
- * @ORM\Table(name="kuma_robots")
+ * @ORM\Table(name="hg_seo_robots")
  */
-class Robots extends AbstractEntity
+class Robots
 {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="bigint")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set id.
+     *
+     * @param int $id The unique identifier
+     *
+     * @return AbstractEntity
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     /**
      * @var string
      *

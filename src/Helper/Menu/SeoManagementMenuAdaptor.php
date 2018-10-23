@@ -1,10 +1,10 @@
 <?php
 
-namespace Kunstmaan\SeoBundle\Helper\Menu;
+namespace Hgabka\SeoBundle\Helper\Menu;
 
-use Kunstmaan\AdminBundle\Helper\Menu\MenuAdaptorInterface;
-use Kunstmaan\AdminBundle\Helper\Menu\MenuBuilder;
-use Kunstmaan\AdminBundle\Helper\Menu\MenuItem;
+use Hgabka\UtilsBundle\Helper\Menu\MenuAdaptorInterface;
+use Hgabka\UtilsBundle\Helper\Menu\MenuBuilder;
+use Hgabka\UtilsBundle\Helper\Menu\MenuItem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
@@ -36,7 +36,7 @@ class SeoManagementMenuAdaptor implements MenuAdaptorInterface
         if (null !== $parent && ('KunstmaanAdminBundle_settings' === $parent->getRoute()) && $this->authorizationChecker->isGranted('ROLE_SUPER_ADMIN')) {
             $menuItem = new MenuItem($menu);
             $menuItem
-                ->setRoute('KunstmaanSeoBundle_settings_robots')
+                ->setRoute('HgabkaSeoBundle_settings_robots')
                 ->setLabel('Robots')
                 ->setUniqueId('robots_settings')
                 ->setParent($parent);

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kunstmaan\SeoBundle\DependencyInjection;
+namespace Hgabka\SeoBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -18,7 +18,7 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('kunstmaan_seo');
+        $treeBuilder->root('hgabka_seo');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for

@@ -1,6 +1,6 @@
 <?php
 
-namespace Kunstmaan\SeoBundle\Helper;
+namespace Hgabka\SeoBundle\Helper;
 
 /**
  * Prepares an order with it's orderitems for conversion.

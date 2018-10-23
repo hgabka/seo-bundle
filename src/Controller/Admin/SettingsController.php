@@ -1,17 +1,17 @@
 <?php
 
-namespace Kunstmaan\SeoBundle\Controller\Admin;
+namespace Hgabka\SeoBundle\Controller\Admin;
 
-use Kunstmaan\AdminBundle\Controller\BaseSettingsController;
-use Kunstmaan\AdminBundle\FlashMessages\FlashTypes;
-use Kunstmaan\SeoBundle\Entity\Robots;
-use Kunstmaan\SeoBundle\Form\RobotsType;
+use Hgabka\UtilsBundle\FlashMessages\FlashTypes;
+use Hgabka\SeoBundle\Entity\Robots;
+use Hgabka\SeoBundle\Form\RobotsType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class SettingsController extends BaseSettingsController
+class SettingsController extends Controller
 {
     /**
      * Generates the robots administration form and fills it with a default value if needed.
@@ -28,7 +28,7 @@ class SettingsController extends BaseSettingsController
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
 
         $em = $this->getDoctrine()->getManager();
-        $repo = $this->getDoctrine()->getRepository('KunstmaanSeoBundle:Robots');
+        $repo = $this->getDoctrine()->getRepository(Robots::class);
         $robot = $repo->findOneBy([]);
         $default = $this->getParameter('robots_default');
         $isSaved = true;
@@ -43,7 +43,7 @@ class SettingsController extends BaseSettingsController
         }
 
         $form = $this->createForm(RobotsType::class, $robot, [
-            'action' => $this->generateUrl('KunstmaanSeoBundle_settings_robots'),
+            'action' => $this->generateUrl('HgabkaSeoBundle_settings_robots'),
         ]);
         if ($request->isMethod('POST')) {
             $form->handleRequest($request);
@@ -51,7 +51,7 @@ class SettingsController extends BaseSettingsController
                 $em->persist($robot);
                 $em->flush();
 
-                return new RedirectResponse($this->generateUrl('KunstmaanSeoBundle_settings_robots'));
+                return new RedirectResponse($this->generateUrl('HgabkaSeoBundle_settings_robots'));
             }
         }
 

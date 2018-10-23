@@ -1,5 +1,5 @@
 # Media
-seo:
+hg_seo:
     robots:
         tip: Tip:
         warning: This is a default value and example, no custom robots.txt has been defined.

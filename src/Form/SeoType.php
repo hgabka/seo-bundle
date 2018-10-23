@@ -1,7 +1,8 @@
 <?php
 
-namespace Kunstmaan\SeoBundle\Form;
+namespace Hgabka\SeoBundle\Form;
 
+use Hgabka\SeoBundle\Entity\Seo;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -96,7 +97,7 @@ class SeoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-                'data_class' => 'Kunstmaan\SeoBundle\Entity\Seo',
+                'data_class' => Seo::class,
         ]);
     }
 }

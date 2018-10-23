@@ -1,11 +1,10 @@
 <?php
 
-namespace Kunstmaan\SeoBundle\Twig;
+namespace Hgabka\SeoBundle\Twig;
 
 use Doctrine\ORM\EntityManager;
-use Kunstmaan\AdminBundle\Entity\AbstractEntity;
-use Kunstmaan\NodeBundle\Entity\AbstractPage;
-use Kunstmaan\SeoBundle\Entity\Seo;
+use Hgabka\NodeBundle\Entity\AbstractPage;
+use Hgabka\SeoBundle\Entity\Seo;
 use Twig_Extension;
 
 /**
@@ -94,7 +93,7 @@ class SeoTwigExtension extends Twig_Extension
         $key = md5(get_class($entity).$entity->getId());
 
         if (!array_key_exists($key, $this->seoCache)) {
-            $seo = $this->em->getRepository('KunstmaanSeoBundle:Seo')->findOrCreateFor($entity);
+            $seo = $this->em->getRepository(Seo::class)->findOrCreateFor($entity);
             $this->seoCache[$key] = $seo;
         }
 
@@ -144,13 +143,13 @@ class SeoTwigExtension extends Twig_Extension
 
     /**
      * @param \Twig_Environment $environment
-     * @param AbstractEntity    $entity      The entity
+     * @param object            $entity      The entity
      * @param mixed             $currentNode The current node
      * @param string            $template    The template
      *
      * @return string
      */
-    public function renderSeoMetadataFor(\Twig_Environment $environment, AbstractEntity $entity, $currentNode = null, $template = 'KunstmaanSeoBundle:SeoTwigExtension:metadata.html.twig')
+    public function renderSeoMetadataFor(\Twig_Environment $environment, $entity, $currentNode = null, $template = 'HgabkaSeoBundle:SeoTwigExtension:metadata.html.twig')
     {
         $seo = $this->getSeoFor($entity);
         $template = $environment->loadTemplate($template);
