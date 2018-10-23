@@ -12,11 +12,12 @@
         }
     ],
     "require": {
-        "php" : "~7.2",
-        "hgabka/utils-bundle": "^4.0",
-        "symfony/framework-bundle": "^4.1"
-        "gedmo/doctrine-extensions": "2.3.*",
-        "hgabka/media-bundle": "^4.0"
+        "php" : "~7.0",
+        "hgabka/utils-bundle": "^3.0",
+        "white-october/pagerfanta-bundle": "~1.0",
+        "liip/imagine-bundle": "^1.9",
+        "knplabs/gaufrette": "^0.6",
+        "symfony/symfony": "~3.2"
     },
     "autoload": {
         "psr-4": { "Hgabka\\SeoBundle\\": "src" }
