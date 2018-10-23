@@ -1,15 +1,15 @@
 <?php
 
-namespace Kunstmaan\SeoBundle\EventListener;
+namespace Hgabka\SeoBundle\EventListener;
 
 use Doctrine\ORM\EntityManager;
-use Kunstmaan\AdminBundle\Helper\FormWidgets\FormWidget;
-use Kunstmaan\AdminBundle\Helper\FormWidgets\Tabs\Tab;
-use Kunstmaan\NodeBundle\Entity\HasNodeInterface;
-use Kunstmaan\NodeBundle\Event\AdaptFormEvent;
-use Kunstmaan\SeoBundle\Entity\Seo;
-use Kunstmaan\SeoBundle\Form\SeoType;
-use Kunstmaan\SeoBundle\Form\SocialType;
+use Hgabka\UtilsBundle\Helper\FormWidgets\FormWidget;
+use Hgabka\UtilsBundle\Helper\FormWidgets\Tabs\Tab;
+use Hgabka\NodeBundle\Entity\HasNodeInterface;
+use Hgabka\NodeBundle\Event\AdaptFormEvent;
+use Hgabka\SeoBundle\Entity\Seo;
+use Hgabka\SeoBundle\Form\SeoType;
+use Hgabka\SeoBundle\Form\SocialType;
 
 /**
  * This will add a seo tab on each page.
@@ -36,7 +36,7 @@ class NodeListener
     {
         if ($event->getPage() instanceof HasNodeInterface && !$event->getPage()->isStructureNode()) {
             // @var Seo $seo
-            $seo = $this->em->getRepository('KunstmaanSeoBundle:Seo')->findOrCreateFor($event->getPage());
+            $seo = $this->em->getRepository(Seo::class)->findOrCreateFor($event->getPage());
 
             $seoWidget = new FormWidget();
             $seoWidget->addType('seo', SeoType::class, $seo);
@@ -44,7 +44,7 @@ class NodeListener
 
             $socialWidget = new FormWidget();
             $socialWidget->addType('social', SocialType::class, $seo);
-            $socialWidget->setTemplate('KunstmaanSeoBundle:Admin\Social:social.html.twig');
+            $socialWidget->setTemplate('HgabkaSeoBundle:Admin\Social:social.html.twig');
             $event->getTabPane()->addTab(new Tab('seo.tab.social.title', $socialWidget));
         }
     }

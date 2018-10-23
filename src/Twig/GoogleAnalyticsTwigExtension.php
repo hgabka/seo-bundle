@@ -1,10 +1,10 @@
 <?php
 
-namespace Kunstmaan\SeoBundle\Twig;
+namespace Hgabka\SeoBundle\Twig;
 
-use Kunstmaan\SeoBundle\Helper\Order;
-use Kunstmaan\SeoBundle\Helper\OrderConverter;
-use Kunstmaan\SeoBundle\Helper\OrderPreparer;
+use Hgabka\SeoBundle\Helper\Order;
+use Hgabka\SeoBundle\Helper\OrderConverter;
+use Hgabka\SeoBundle\Helper\OrderPreparer;
 use Twig_Environment;
 use Twig_Extension;
 
@@ -99,7 +99,7 @@ class GoogleAnalyticsTwigExtension extends Twig_Extension
             );
         }
 
-        $template = $environment->loadTemplate('KunstmaanSeoBundle:GoogleAnalyticsTwigExtension:init.html.twig');
+        $template = $environment->loadTemplate('HgabkaSeoBundle:GoogleAnalyticsTwigExtension:init.html.twig');
 
         return $template->render($options);
     }
@@ -115,7 +115,7 @@ class GoogleAnalyticsTwigExtension extends Twig_Extension
         $order = $this->orderPreparer->prepare($order);
         $options = $this->orderConverter->convert($order);
         $template = $environment->loadTemplate(
-            'KunstmaanSeoBundle:GoogleAnalyticsTwigExtension:ecommerce_tracking.html.twig'
+            'HgabkaSeoBundle:GoogleAnalyticsTwigExtension:ecommerce_tracking.html.twig'
         );
 
         return $template->render($options);

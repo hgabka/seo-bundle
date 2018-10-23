@@ -1,9 +1,10 @@
 <?php
 
-namespace Kunstmaan\SeoBundle\Form;
+namespace Hgabka\SeoBundle\Form;
 
-use Kunstmaan\MediaBundle\Form\Type\MediaType;
-use Kunstmaan\NodeBundle\Form\Type\URLChooserType;
+use Hgabka\MediaBundle\Form\Type\MediaType;
+use Hgabka\NodeBundle\Form\Type\URLChooserType;
+use Hgabka\SeoBundle\Entity\Seo;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -133,7 +134,7 @@ class SocialType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'Kunstmaan\SeoBundle\Entity\Seo',
+            'data_class' => Seo::class,
         ]);
     }
 }

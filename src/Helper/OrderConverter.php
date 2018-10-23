@@ -1,6 +1,6 @@
 <?php
 
-namespace Kunstmaan\SeoBundle\Helper;
+namespace Hgabka\SeoBundle\Helper;
 
 /**
  * Class OrderConverter.

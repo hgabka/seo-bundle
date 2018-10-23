@@ -1,9 +1,8 @@
 <?php
 
-namespace Kunstmaan\SeoBundle\EventListener;
+namespace Hgabka\SeoBundle\EventListener;
 
 use Doctrine\ORM\EntityManager;
-use Kunstmaan\AdminBundle\Entity\AbstractEntity;
 use Kunstmaan\AdminBundle\Event\DeepCloneAndSaveEvent;
 use Kunstmaan\AdminBundle\Helper\CloneHelper;
 use Kunstmaan\SeoBundle\Entity\Seo;
@@ -40,9 +39,9 @@ class CloneListener
     {
         $originalEntity = $event->getEntity();
 
-        if ($originalEntity instanceof AbstractEntity) {
+        if (method_exists($originalEntity, 'getId')) {
             // @var Seo $seo
-            $seo = $this->em->getRepository('KunstmaanSeoBundle:Seo')->findFor($originalEntity);
+            $seo = $this->em->getRepository(Seo::class)->findFor($originalEntity);
 
             if (null !== $seo) {
                 // @var Seo $clonedSeo

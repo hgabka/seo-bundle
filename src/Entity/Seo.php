@@ -1,24 +1,54 @@
 <?php
 
-namespace Kunstmaan\SeoBundle\Entity;
+namespace Hgabka\SeoBundle\Entity;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping as ORM;
-use Kunstmaan\AdminBundle\Entity\AbstractEntity;
-use Kunstmaan\MediaBundle\Entity\Media;
-use Kunstmaan\SeoBundle\Form\SeoType;
-use Kunstmaan\UtilitiesBundle\Helper\ClassLookup;
+use Hgabka\MediaBundle\Entity\Media;
+use Hgabka\SeoBundle\Form\SeoType;
+use Hgabka\UtilsBundle\Helper\ClassLookup;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Seo metadata for entities.
  *
- * @ORM\Entity(repositoryClass="Kunstmaan\SeoBundle\Repository\SeoRepository")
- * @ORM\Table(name="kuma_seo", indexes={@ORM\Index(name="idx_seo_lookup", columns={"ref_id", "ref_entity_name"})})
+ * @ORM\Entity(repositoryClass="Hgabka\SeoBundle\Repository\SeoRepository")
+ * @ORM\Table(name="hg_seo_seo", indexes={@ORM\Index(name="idx_seo_lookup", columns={"ref_id", "ref_entity_name"})})
  * @ORM\ChangeTrackingPolicy("DEFERRED_EXPLICIT")
  */
-class Seo extends AbstractEntity
+class Seo
 {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="bigint")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set id.
+     *
+     * @param int $id The unique identifier
+     *
+     * @return AbstractEntity
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
     /**
      * @var string
      *
@@ -73,7 +103,7 @@ class Seo extends AbstractEntity
     /**
      * @var Media
      *
-     * @ORM\ManyToOne(targetEntity="Kunstmaan\MediaBundle\Entity\Media")
+     * @ORM\ManyToOne(targetEntity="Hgabka\MediaBundle\Entity\Media")
      * @ORM\JoinColumn(name="og_image_id", referencedColumnName="id")
      */
     protected $ogImage;
@@ -150,7 +180,7 @@ class Seo extends AbstractEntity
     /**
      * @var Media
      *
-     * @ORM\ManyToOne(targetEntity="Kunstmaan\MediaBundle\Entity\Media")
+     * @ORM\ManyToOne(targetEntity="Hgabka\MediaBundle\Entity\Media")
      * @ORM\JoinColumn(name="twitter_image_id", referencedColumnName="id")
      */
     protected $twitterImage;
