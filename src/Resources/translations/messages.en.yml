@@ -1,5 +1,6 @@
 # Media
 hg_seo:
+    group: SEO settings
     robots:
         tip: Tip:
         warning: This is a default value and example, no custom robots.txt has been defined.
