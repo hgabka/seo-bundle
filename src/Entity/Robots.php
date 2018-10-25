@@ -21,6 +21,23 @@ class Robots
     protected $id;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="robots_txt", type="text", nullable=true)
+     */
+    protected $robotsTxt;
+
+    /**
+     * Return string representation of entity.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return 'Robots';
+    }
+
+    /**
      * Get id.
      *
      * @return int
@@ -42,23 +59,6 @@ class Robots
         $this->id = $id;
 
         return $this;
-    }
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="robots_txt", type="text", nullable=true)
-     */
-    protected $robotsTxt;
-
-    /**
-     * Return string representation of entity.
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return 'Robots';
     }
 
     /**

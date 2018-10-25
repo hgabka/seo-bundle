@@ -3,9 +3,9 @@
 namespace Hgabka\SeoBundle\EventListener;
 
 use Doctrine\ORM\EntityManager;
+use Hgabka\SeoBundle\Entity\Seo;
 use Hgabka\UtilsBundle\Event\DeepCloneAndSaveEvent;
 use Hgabka\UtilsBundle\Helper\CloneHelper;
-use Hgabka\SeoBundle\Entity\Seo;
 
 /**
  * This event will make sure the seo metadata is copied when a page is cloned.

@@ -192,7 +192,7 @@ class Order
      */
     private function accumulatePropertyOnOrderItems($property)
     {
-        if (0 === count($this->orderItems)) {
+        if (0 === \count($this->orderItems)) {
             return '';
         }
 

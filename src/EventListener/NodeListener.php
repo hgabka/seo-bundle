@@ -3,13 +3,13 @@
 namespace Hgabka\SeoBundle\EventListener;
 
 use Doctrine\ORM\EntityManager;
-use Hgabka\UtilsBundle\Helper\FormWidgets\FormWidget;
-use Hgabka\UtilsBundle\Helper\FormWidgets\Tabs\Tab;
 use Hgabka\NodeBundle\Entity\HasNodeInterface;
 use Hgabka\NodeBundle\Event\AdaptFormEvent;
 use Hgabka\SeoBundle\Entity\Seo;
 use Hgabka\SeoBundle\Form\SeoType;
 use Hgabka\SeoBundle\Form\SocialType;
+use Hgabka\UtilsBundle\Helper\FormWidgets\FormWidget;
+use Hgabka\UtilsBundle\Helper\FormWidgets\Tabs\Tab;
 
 /**
  * This will add a seo tab on each page.
