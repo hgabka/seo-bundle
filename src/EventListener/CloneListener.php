@@ -4,7 +4,7 @@ namespace Hgabka\SeoBundle\EventListener;
 
 use Doctrine\ORM\EntityManager;
 use Hgabka\UtilsBundle\Event\DeepCloneAndSaveEvent;
-use KHgabka\UtilsBundle\Helper\CloneHelper;
+use Hgabka\UtilsBundle\Helper\CloneHelper;
 use Hgabka\SeoBundle\Entity\Seo;
 
 /**
