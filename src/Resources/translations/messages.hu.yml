@@ -1,5 +1,6 @@
 # Media
 hg_seo:
+    group: SEO beállítások
     robots:
         tip: "Tip:"
         warning: Ez csak egy alapértelmezett érték és példa, nincsen robots.txt feltöltve
