@@ -105,7 +105,7 @@ class SeoTest extends \PHPUnit_Framework_TestCase
     public function testGetSetOgImageWithNullValue()
     {
         $this->object->setOgImage(null);
-        $this->assertSame(null, $this->object->getOgImage());
+        $this->assertNull($this->object->getOgImage());
     }
 
     /**
@@ -188,7 +188,7 @@ class SeoTest extends \PHPUnit_Framework_TestCase
     public function testGetSetTwitterImageWithNullValue()
     {
         $this->object->setTwitterImage(null);
-        $this->assertSame(null, $this->object->getTwitterImage());
+        $this->assertNull($this->object->getTwitterImage());
     }
 
     // HELPERS

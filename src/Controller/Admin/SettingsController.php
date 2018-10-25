@@ -2,9 +2,9 @@
 
 namespace Hgabka\SeoBundle\Controller\Admin;
 
-use Hgabka\UtilsBundle\FlashMessages\FlashTypes;
 use Hgabka\SeoBundle\Entity\Robots;
 use Hgabka\SeoBundle\Form\RobotsType;
+use Hgabka\UtilsBundle\FlashMessages\FlashTypes;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;

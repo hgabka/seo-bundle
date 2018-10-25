@@ -26,30 +26,6 @@ class Seo
     protected $id;
 
     /**
-     * Get id.
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * Set id.
-     *
-     * @param int $id The unique identifier
-     *
-     * @return AbstractEntity
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    /**
      * @var string
      *
      * @ORM\Column(name="meta_title", type="string", nullable=true)
@@ -184,6 +160,30 @@ class Seo
      * @ORM\JoinColumn(name="twitter_image_id", referencedColumnName="id")
      */
     protected $twitterImage;
+
+    /**
+     * Get id.
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set id.
+     *
+     * @param int $id The unique identifier
+     *
+     * @return AbstractEntity
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
 
     /**
      * @param string $url

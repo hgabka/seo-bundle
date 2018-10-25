@@ -1,5 +1,11 @@
-# Media
+# SEO
+breadcrumb:
+    link_robots_list: SEO beállítások
+
 hg_seo:
+    admin:
+        label:
+            robots: Robots.txt beállítás
     group: SEO beállítások
     robots:
         tip: "Tip:"

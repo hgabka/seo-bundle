@@ -90,7 +90,7 @@ class SeoTwigExtension extends Twig_Extension
      */
     public function getSeoFor(AbstractPage $entity)
     {
-        $key = md5(get_class($entity).$entity->getId());
+        $key = md5(\get_class($entity).$entity->getId());
 
         if (!array_key_exists($key, $this->seoCache)) {
             $seo = $this->em->getRepository(Seo::class)->findOrCreateFor($entity);
@@ -195,7 +195,7 @@ class SeoTwigExtension extends Twig_Extension
     public function getImageDimensions($src)
     {
         try {
-            list($width, $height) = getimagesize($src);
+            [$width, $height] = getimagesize($src);
         } catch (\Exception $e) {
             return null;
         }
