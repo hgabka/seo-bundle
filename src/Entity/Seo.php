@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping as ORM;
 use Hgabka\MediaBundle\Entity\Media;
 use Hgabka\SeoBundle\Form\SeoType;
+use Hgabka\UtilsBundle\Entity\EntityInterface;
 use Hgabka\UtilsBundle\Helper\ClassLookup;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -538,7 +539,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setRef(AbstractEntity $entity)
+    public function setRef(EntityInterface $entity)
     {
         $this->setRefId($entity->getId());
         $this->setRefEntityName(ClassLookup::getClass($entity));

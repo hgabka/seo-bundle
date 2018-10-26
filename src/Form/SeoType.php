@@ -28,14 +28,14 @@ class SeoType extends AbstractType
     {
         $builder->add('id', HiddenType::class)
             ->add('metaTitle', null, [
-                'label' => 'seo.form.seo.meta_title.label',
+                'label' => 'hg_seo.form.seo.meta_title.label',
                 'attr' => [
-                    'info_text' => 'seo.form.seo.meta_title.info_text',
+                    'info_text' => 'hg_seo.form.seo.meta_title.info_text',
                     'maxlength' => 55,
                 ],
             ])
             ->add('metaDescription', null, [
-                'label' => 'seo.form.seo.meta_description.label',
+                'label' => 'hg_seo.form.seo.meta_description.label',
                 'attr' => [
                     'maxlength' => 155,
                 ],
@@ -43,19 +43,19 @@ class SeoType extends AbstractType
 
         $builder->add('metaRobots', ChoiceType::class, [
             'choices' => [
-                'seo.form.robots.noindex' => self::ROBOTS_NOINDEX,
-                'seo.form.robots.nofollow' => self::ROBOTS_NOFOLLOW,
-                'seo.form.robots.noarchive' => self::ROBOTS_NOARCHIVE,
-                'seo.form.robots.nosnippet' => self::ROBOTS_NOSNIPPET,
-                'seo.form.robots.notranslate' => self::ROBOTS_NOTRANSLATE,
-                'seo.form.robots.noimageindex' => self::ROBOTS_NOIMAGEINDEX,
+                'hg_seo.form.robots.noindex' => self::ROBOTS_NOINDEX,
+                'hg_seo.form.robots.nofollow' => self::ROBOTS_NOFOLLOW,
+                'hg_seo.form.robots.noarchive' => self::ROBOTS_NOARCHIVE,
+                'hg_seo.form.robots.nosnippet' => self::ROBOTS_NOSNIPPET,
+                'hg_seo.form.robots.notranslate' => self::ROBOTS_NOTRANSLATE,
+                'hg_seo.form.robots.noimageindex' => self::ROBOTS_NOIMAGEINDEX,
             ],
             'required' => false,
             'multiple' => true,
             'expanded' => false,
-            'label' => 'seo.form.seo.meta_robots.label',
+            'label' => 'hg_seo.form.seo.meta_robots.label',
             'attr' => [
-                'placeholder' => 'seo.form.seo.meta_robots.placeholder',
+                'placeholder' => 'hg_seo.form.seo.meta_robots.placeholder',
                 'class' => 'js-advanced-select form-control',
                 'maxlength' => 255,
             ],
@@ -81,7 +81,7 @@ class SeoType extends AbstractType
                 }
             ));
         $builder->add('extraMetadata', TextareaType::class, [
-            'label' => 'seo.form.seo.extra_metadata.label',
+            'label' => 'hg_seo.form.seo.extra_metadata.label',
             'required' => false,
         ]);
     }
