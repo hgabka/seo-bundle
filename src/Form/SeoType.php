@@ -56,7 +56,7 @@ class SeoType extends AbstractType
             'label' => 'hg_seo.form.seo.meta_robots.label',
             'attr' => [
                 'placeholder' => 'hg_seo.form.seo.meta_robots.placeholder',
-                'class' => 'js-advanced-select form-control',
+                'class' => 'form-control',
                 'maxlength' => 255,
             ],
         ]);
