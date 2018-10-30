@@ -49,7 +49,9 @@ class SeoTwigExtension extends Twig_Extension
     {
         return [
             new \Twig_SimpleFunction('render_seo_metadata_for', [$this, 'renderSeoMetadataFor'], ['is_safe' => ['html'], 'needs_environment' => true]),
+            new \Twig_SimpleFunction('render_general_seo_metadata', [$this, 'renderGeneralSeoMetadata'], ['is_safe' => ['html'], 'needs_environment' => true]),
             new \Twig_SimpleFunction('get_seo_for', [$this, 'getSeoFor']),
+            new \Twig_SimpleFunction('get_title', [$this, 'getTitle']),
             new \Twig_SimpleFunction('get_title_for', [$this, 'getTitleFor']),
             new \Twig_SimpleFunction('get_title_for_page_or_default', [$this, 'getTitleForPageOrDefault']),
             new \Twig_SimpleFunction('get_absolute_url', [$this, 'getAbsoluteUrl']),
@@ -119,6 +121,22 @@ class SeoTwigExtension extends Twig_Extension
     }
 
     /**
+     * The first value that is not null or empty will be returned.
+     *
+     * @param AbstractPage $entity the entity for which you want the page title
+     *
+     * @return string The page title. Will look in the SEO meta first, then the NodeTranslation, then the page.
+     */
+    public function getTitle()
+    {
+        $arr = [];
+
+        $arr[] = $this->getSeoTitle();
+
+        return $this->getPreferredValue($arr);
+    }
+
+    /**
      * @param AbstractPage $entity
      * @param null|string  $default if given we'll return this text if no SEO title was found
      *
@@ -149,7 +167,7 @@ class SeoTwigExtension extends Twig_Extension
      *
      * @return string
      */
-    public function renderSeoMetadataFor(\Twig_Environment $environment, $entity, $currentNode = null, $template = 'HgabkaSeoBundle:SeoTwigExtension:metadata.html.twig')
+    public function renderSeoMetadataFor(\Twig_Environment $environment, $entity, $currentNode = null, $template = '@HgabkaSeo/SeoTwigExtension/metadata.html.twig')
     {
         $seo = $this->getSeoFor($entity);
         $template = $environment->loadTemplate($template);
@@ -159,6 +177,27 @@ class SeoTwigExtension extends Twig_Extension
                 'seo' => $seo,
                 'entity' => $entity,
                 'currentNode' => $currentNode,
+            ]
+        );
+    }
+
+    /**
+     * @param \Twig_Environment $environment
+     * @param object            $entity      The entity
+     * @param mixed             $currentNode The current node
+     * @param string            $template    The template
+     *
+     * @return string
+     */
+    public function renderGeneralSeoMetadata(\Twig_Environment $environment, $template = '@HgabkaSeo/SeoTwigExtension/metadata.html.twig')
+    {
+        $seo = $this->getGeneralSeo();
+        $template = $environment->loadTemplate($template);
+
+        return $template->render(
+            [
+                'seo' => $seo,
+                'currentNode' => null,
             ]
         );
     }
@@ -203,6 +242,11 @@ class SeoTwigExtension extends Twig_Extension
         return ['width' => $width, 'height' => $height];
     }
 
+    protected function getGeneralSeo()
+    {
+        return $this->em->getRepository(Seo::class)->findGeneral();
+    }
+
     /**
      * @param array $values
      *
@@ -226,11 +270,7 @@ class SeoTwigExtension extends Twig_Extension
      */
     private function getSeoTitle(AbstractPage $entity = null)
     {
-        if (null === $entity) {
-            return null;
-        }
-
-        $seo = $this->getSeoFor($entity);
+        $seo = $entity ? $this->getSeoFor($entity) : $this->getGeneralSeo();
         if (null !== $seo) {
             $title = $seo->getMetaTitle();
             if (!empty($title)) {

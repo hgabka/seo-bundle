@@ -2,10 +2,11 @@
 
 namespace Hgabka\SeoBundle\Controller;
 
-use Hgabka\SeoBundle\Entity\Seo;
+use Hgabka\SeoBundle\Entity\Robots;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sonata\AdminBundle\Controller\CRUDController;
 
-class SeoAdminController extends CRUDController
+class RobotsAdminController extends CRUDController
 {
     public function createAction()
     {
@@ -13,20 +14,20 @@ class SeoAdminController extends CRUDController
         // the key used to lookup the template
         $templateKey = 'edit';
 
-        $repo = $this->getDoctrine()->getRepository(Seo::class);
-        $seo = $repo->findGeneral();
-
+        $repo = $this->getDoctrine()->getRepository(Robots::class);
+        $robot = $repo->findOneBy([]);
+        $default = $this->getParameter('robots_default');
         $isSaved = true;
-        if (!$seo) {
-            $seo = new Seo();
-            $seo
-                ->setRef(null)
-            ;
+        if (!$robot) {
+            $robot = new Robots();
             $isSaved = false;
         }
-        $this->admin->checkAccess('edit', $seo);
+        $this->admin->checkAccess('edit', $robot);
 
-        $existingObject = $seo;
+        if (null === $robot->getRobotsTxt()) {
+            $robot->setRobotsTxt($default);
+        }
+        $existingObject = $robot;
         $preResponse = $this->preEdit($request, $existingObject);
         if (null !== $preResponse) {
             return $preResponse;
@@ -51,7 +52,7 @@ class SeoAdminController extends CRUDController
             $isFormValid = $form->isValid();
 
             // persist if the form was valid and if in preview mode the preview was approved
-            if ($isFormValid) {
+            if ($isFormValid && (!$this->isInPreviewMode() || $this->isPreviewApproved())) {
                 $submittedObject = $form->getData();
                 $this->admin->setSubject($submittedObject);
 

@@ -34,7 +34,7 @@ class Robots
      */
     public function __toString()
     {
-        return 'Robots';
+        return 'hg_seo.admin.label.robots';
     }
 
     /**

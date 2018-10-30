@@ -95,14 +95,14 @@ class Seo
     /**
      * @var int
      *
-     * @ORM\Column(type="bigint", name="ref_id")
+     * @ORM\Column(type="bigint", name="ref_id", nullable=true)
      */
     protected $refId;
 
     /**
      * @var string
      *
-     * @ORM\Column(type="string", name="ref_entity_name")
+     * @ORM\Column(type="string", name="ref_entity_name", nullable=true)
      */
     protected $refEntityName;
 
@@ -161,6 +161,16 @@ class Seo
      * @ORM\JoinColumn(name="twitter_image_id", referencedColumnName="id")
      */
     protected $twitterImage;
+
+    /**
+     * Return string representation of entity.
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return 'hg_seo.admin.label.seo';
+    }
 
     /**
      * Get id.
@@ -539,10 +549,10 @@ class Seo
      *
      * @return Seo
      */
-    public function setRef(EntityInterface $entity)
+    public function setRef(EntityInterface $entity = null)
     {
-        $this->setRefId($entity->getId());
-        $this->setRefEntityName(ClassLookup::getClass($entity));
+        $this->setRefId($entity ? $entity->getId() : null);
+        $this->setRefEntityName($entity ? ClassLookup::getClass($entity) : null);
 
         return $this;
     }

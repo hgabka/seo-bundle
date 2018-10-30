@@ -1,0 +1,47 @@
+{% extends base_template %}
+
+{% block title %}
+  {{ "hg_seo.admin.label.robots"|trans({}, 'HgabkaSeoBundle') }}
+{% endblock %}
+
+{% block navbar_title %}
+    {{ block('title') }}
+{% endblock %}
+{% block sonata_breadcrumb %}
+    <div class="hidden-xs">
+        <ol class="nav navbar-top-links breadcrumb">
+            <li>
+                <a href="{{ path('sonata_admin_dashboard') }}">{{ 'link_breadcrumb_dashboard' | trans({}, 'SonataAdminBundle') | raw }}</a>
+            </li>
+            <li>
+                <span>{{ 'hg_seo.group'|trans }}</span>
+            </li>
+            <li>
+                <a href="{{ admin.generateUrl('create') }}">{{ 'hg_seo.admin.label.robots'|trans }}
+                </a>
+            </li>
+        </ol>
+    </div>
+{% endblock sonata_breadcrumb %}
+
+{%- block actions -%}
+    {% include '@SonataAdmin/CRUD/action_buttons.html.twig' %}
+{%- endblock -%}
+
+{%- block tab_menu -%}
+    {{ knp_menu_render(admin.sidemenu(action), {
+        'currentClass': 'active',
+        'template': get_global_template('tab_menu_template')
+    }, 'twig') }}
+{%- endblock -%}
+
+{% use '@SonataAdmin/CRUD/base_edit_form.html.twig' with form as parentForm %}
+
+{% block form %}
+    {{ block('parentForm') }}
+{% endblock %}
+
+{% block sonata_form_actions %}
+      <button class="btn btn-success" type="submit" name="btn_create_and_edit"><i class="fa fa-save" aria-hidden="true"></i> {{ 'btn_update'|trans({}, 'SonataAdminBundle') }}</button>
+{% endblock %}
+

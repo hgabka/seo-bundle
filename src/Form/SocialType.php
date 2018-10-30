@@ -97,14 +97,14 @@ class SocialType extends AbstractType
             ],
         ])
             ->add('twitterDescription', TextareaType::class, [
-                'label' => 'seo.form.twitter.description',
+                'label' => 'hg_seo.form.twitter.description',
                 'required' => false,
                 'attr' => [
                     'info_text' => 'hg_seo.form.twitter.description_info_text',
                 ],
             ])
             ->add('twitterSite', TextType::class, [
-                'label' => 'seo.form.twitter.sitehandle',
+                'label' => 'hg_seo.form.twitter.sitehandle',
                 'required' => false,
                 'attr' => [
                     'info_text' => 'hg_seo.form.twitter.sitehandle_info_text',

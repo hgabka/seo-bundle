@@ -39,4 +39,18 @@ class SeoRepository extends EntityRepository
 
         return $seo;
     }
+
+    public function findGeneral()
+    {
+        return
+            $this
+                ->createQueryBuilder('s')
+                ->where('s.refId IS NULL')
+                ->andWhere('s.refEntityName IS NULL')
+                ->orderBy('s.id', 'DESC')
+                ->setMaxResults(1)
+                ->getQuery()
+                ->getOneOrNullResult()
+        ;
+    }
 }

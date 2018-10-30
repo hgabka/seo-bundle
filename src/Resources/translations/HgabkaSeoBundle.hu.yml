@@ -1,2 +1,6 @@
 hg_seo:
     group: SEO beállítások
+    admin:
+        label:
+            robots: 'Robots.txt beállítás'
+            seo: SEO beállítások
