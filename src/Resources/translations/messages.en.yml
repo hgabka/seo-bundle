@@ -1,8 +1,13 @@
-# Media
+#SEO
+breadcrumb:
+    link_robots_list: SEO settings
+    link_seo_list: SEO settings
+
 hg_seo:
     admin:
         label:
             robots: 'Robots.txt setting'
+            seo: SEO settings
     robots:
         tip: Tip:
         warning: This is a default value and example, no custom robots.txt has been defined.

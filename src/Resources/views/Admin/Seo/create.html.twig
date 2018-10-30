@@ -1,0 +1,75 @@
+{% extends base_template %}
+
+{% block title %}
+    {{ "hg_seo.admin.label.seo"|trans({}, 'HgabkaSeoBundle') }}
+{% endblock %}
+{% block sonata_breadcrumb %}
+    <div class="hidden-xs">
+        <ol class="nav navbar-top-links breadcrumb">
+            <li>
+                <a href="{{ path('sonata_admin_dashboard') }}">{{ 'link_breadcrumb_dashboard' | trans({}, 'SonataAdminBundle') | raw }}</a>
+            </li>
+            <li>
+                <span>{{ 'hg_seo.group'|trans }}</span>
+            </li>
+            <li>
+                <a href="{{ admin.generateUrl('create') }}">{{ 'hg_seo.admin.label.seo'|trans }}
+                </a>
+            </li>
+        </ol>
+    </div>
+{% endblock sonata_breadcrumb %}
+
+{% block navbar_title %}
+    {{ block('title') }}
+{% endblock %}
+
+{%- block actions -%}
+    {% include '@SonataAdmin/CRUD/action_buttons.html.twig' %}
+{%- endblock -%}
+
+{%- block tab_menu -%}
+    {{ knp_menu_render(admin.sidemenu(action), {
+        'currentClass': 'active',
+        'template': get_global_template('tab_menu_template')
+    }, 'twig') }}
+{%- endblock -%}
+
+{% use '@SonataAdmin/CRUD/base_edit_form.html.twig' with form as parentForm %}
+
+{% block form %}
+    {{ block('parentForm') }}
+{% endblock %}
+
+{% block sonata_form_actions %}
+    <button class="btn btn-success" type="submit" name="btn_create_and_edit"><i class="fa fa-save" aria-hidden="true"></i> {{ 'btn_update'|trans({}, 'SonataAdminBundle') }}</button>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(function () {
+            var $object = $('select[id$="_ogType"]');
+            $object.on('change', doCheckboxToggle);
+            doCheckboxToggle();
+        });
+
+        function doCheckboxToggle() {
+            var $object = $('select[id$="_ogType"]');
+            var value = $object.val();
+
+            var author = $('[id$="_ogArticleAuthor"]');
+            var publisher = $('[id$="_ogArticlePublisher');
+            var section = $('[id$="_ogArticleSection');
+            if (value == 'article') {
+                author.parents('.form-group').first().show();
+                publisher.parents('.form-group').first().show();
+                section.parents('.form-group').first().show();
+            } else {
+                author.parents('.form-group').first().hide();
+                publisher.parents('.form-group').first().hide();
+                section.parents('.form-group').first().hide();
+            }
+        }
+    </script>
+{% endblock %}

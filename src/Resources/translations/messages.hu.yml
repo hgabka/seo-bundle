@@ -1,11 +1,13 @@
 # SEO
 breadcrumb:
     link_robots_list: SEO beállítások
+    link_seo_list: SEO beállítások
 
 hg_seo:
     admin:
         label:
             robots: Robots.txt beállítás
+            seo: SEO beállítások
     group: SEO beállítások
     robots:
         tip: "Tip:"
@@ -65,4 +67,4 @@ hg_seo:
         seo:
             title: SEO
         social:
-            title: Közösség
+            title: Közösségi média
