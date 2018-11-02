@@ -16,6 +16,27 @@ class SeoAdmin extends AbstractAdmin
 {
     protected $baseRoutePattern = 'seo';
 
+    /**
+     * Get the list of actions that can be accessed directly from the dashboard.
+     *
+     * @return array
+     */
+    public function getDashboardActions()
+    {
+        $actions = [];
+
+        if ($this->hasAccess('create')) {
+            $actions['create'] = [
+                'label' => 'hg_seo.admin.label.seo',
+                'translation_domain' => 'messages',
+                'url' => $this->generateUrl('create'),
+                'icon' => 'google',
+            ];
+        }
+
+        return $actions;
+    }
+
     public function configureActionButtons($action, $object = null)
     {
         $list = parent::configureActionButtons($action, $object);
