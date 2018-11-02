@@ -4,6 +4,8 @@ breadcrumb:
     link_seo_list: SEO settings
 
 hg_seo:
+    block:
+        seo: SEO settings
     admin:
         label:
             robots: 'Robots.txt setting'
@@ -22,6 +24,7 @@ hg_seo:
         og:
             title: OG Title
             description: OG Description
+            meta_description: Meta description
             url: OG Url
             type: OG Type
             image: OG Image

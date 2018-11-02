@@ -4,6 +4,8 @@ breadcrumb:
     link_seo_list: SEO beállítások
 
 hg_seo:
+    block:
+        seo: SEO beállítások
     admin:
         label:
             robots: Robots.txt beállítás
@@ -23,6 +25,7 @@ hg_seo:
         og:
             title: Cím
             description: Leírás
+            meta_description: Meta leírás
             url: url
             type: Típus
             image: Kép

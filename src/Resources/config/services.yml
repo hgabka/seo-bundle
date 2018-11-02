@@ -2,7 +2,7 @@ services:
     hgabka_seo.admin.robots:
         class: Hgabka\SeoBundle\Admin\RobotsAdmin
         tags:
-        - { name: sonata.admin, manager_type: orm, group: hg_seo.group, icon: '<i class="fa fa-google"></i>', label: hg_seo.label.robots, label_catalogue: 'HgabkaSeoBundle', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
+        - { name: sonata.admin, manager_type: orm, group: hg_seo.group, icon: '<i class="fa fa-google"></i>', label: hg_seo.admin.label.robots, label_catalogue: 'HgabkaSeoBundle', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
         arguments: [null, Hgabka\SeoBundle\Entity\Robots, HgabkaSeoBundle:RobotsAdmin]
         calls:
         - [ setTemplate, ['edit', '@@HgabkaSeo/Admin/Robots/create.html.twig']]
@@ -10,7 +10,7 @@ services:
     hgabka_seo.admin.seo:
         class: Hgabka\SeoBundle\Admin\SeoAdmin
         tags:
-        - { name: sonata.admin, manager_type: orm, group: hg_seo.group, icon: '<i class="fa fa-android"></i>', label: hg_seo.label.seo, label_catalogue: 'HgabkaSeoBundle', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
+        - { name: sonata.admin, manager_type: orm, group: hg_seo.group, icon: '<i class="fa fa-android"></i>', label: hg_seo.admin.label.seo, label_catalogue: 'HgabkaSeoBundle', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
         arguments: [null, Hgabka\SeoBundle\Entity\Seo, HgabkaSeoBundle:SeoAdmin]
         calls:
             - [ setTemplate, ['edit', '@@HgabkaSeo/Admin/Seo/create.html.twig']]
