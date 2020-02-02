@@ -36,6 +36,7 @@
 {%- endblock -%}
 
 {% use '@SonataAdmin/CRUD/base_edit_form.html.twig' with form as parentForm %}
+{% block sonata_form_action_url %}{{ admin.generateUrl('create', { uniqid: admin.uniqid }) }}{% endblock %}
 
 {% block form %}
     {{ block('parentForm') }}
