@@ -94,7 +94,7 @@ class SeoTwigExtension extends Twig_Extension
     {
         $key = md5(\get_class($entity).$entity->getId());
 
-        if (!array_key_exists($key, $this->seoCache)) {
+        if (!\array_key_exists($key, $this->seoCache)) {
             $seo = $this->em->getRepository(Seo::class)->findOrCreateFor($entity);
             $this->seoCache[$key] = $seo;
         }
