@@ -36,7 +36,6 @@ class SeoAdminController extends CRUDController
         $objectId = $this->admin->getNormalizedIdentifier($existingObject);
 
         $form = $this->admin->getForm();
-        \assert($form instanceof Form);
 
         if (!\is_array($fields = $form->all()) || 0 === \count($fields)) {
             throw new \RuntimeException(
