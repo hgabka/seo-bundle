@@ -10,8 +10,6 @@ class OrderConverter
     /**
      * Converts an Order object to an Array.
      *
-     * @param Order $order
-     *
      * @return array
      */
     public function convert(Order $order)

@@ -30,7 +30,7 @@ class Seo
      * @var string
      *
      * @ORM\Column(name="meta_title", type="string", nullable=true)
-     * @Assert\Length(max=55)
+     * @Assert\Length(max=65)
      */
     protected $metaTitle;
 
@@ -558,8 +558,6 @@ class Seo
     }
 
     /**
-     * @param EntityManager $em
-     *
      * @return AbstractEntity
      */
     public function getRef(EntityManager $em)

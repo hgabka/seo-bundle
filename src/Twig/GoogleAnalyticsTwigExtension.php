@@ -80,7 +80,7 @@ class GoogleAnalyticsTwigExtension extends Twig_Extension
      *
      * @return string the HTML rendered
      */
-    public function renderInitialize(\Twig_Environment $environment, $options = null)
+    public function renderInitialize(Twig_Environment $environment, $options = null)
     {
         if (null === $options) {
             $options = [];
@@ -94,9 +94,7 @@ class GoogleAnalyticsTwigExtension extends Twig_Extension
         $options = array_merge($defaults, $options);
 
         if (!$this->isOptionSet($options, $this->accountVarName)) {
-            throw new \Twig_Error_Runtime(
-                "The google_analytics_initialize function depends on a Google Analytics account ID. You can either pass this along in the initialize_google_analytics function ($this->accountVarName), provide a variable under 'parameters.google.analytics.account_id'."
-            );
+            throw new \Twig_Error_Runtime("The google_analytics_initialize function depends on a Google Analytics account ID. You can either pass this along in the initialize_google_analytics function ($this->accountVarName), provide a variable under 'parameters.google.analytics.account_id'.");
         }
 
         $template = $environment->loadTemplate('HgabkaSeoBundle:GoogleAnalyticsTwigExtension:init.html.twig');
@@ -105,12 +103,9 @@ class GoogleAnalyticsTwigExtension extends Twig_Extension
     }
 
     /**
-     * @param Twig_Environment $environment
-     * @param Order            $order
-     *
      * @return string the HTML rendered
      */
-    public function renderECommerceTracking(\Twig_Environment $environment, Order $order)
+    public function renderECommerceTracking(Twig_Environment $environment, Order $order)
     {
         $order = $this->orderPreparer->prepare($order);
         $options = $this->orderConverter->convert($order);

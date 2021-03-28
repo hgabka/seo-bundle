@@ -20,10 +20,6 @@ class SeoType extends AbstractType
     const ROBOTS_NOTRANSLATE = 'notranslate';
     const ROBOTS_NOIMAGEINDEX = 'noimageindex';
 
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('id', HiddenType::class)

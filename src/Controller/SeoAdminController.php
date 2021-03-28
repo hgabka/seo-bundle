@@ -38,9 +38,7 @@ class SeoAdminController extends CRUDController
         $form = $this->admin->getForm();
 
         if (!\is_array($fields = $form->all()) || 0 === \count($fields)) {
-            throw new \RuntimeException(
-                'No editable field defined. Did you forget to implement the "configureFormFields" method?'
-            );
+            throw new \RuntimeException('No editable field defined. Did you forget to implement the "configureFormFields" method?');
         }
 
         $form->setData($existingObject);

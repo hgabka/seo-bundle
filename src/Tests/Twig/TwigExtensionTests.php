@@ -72,7 +72,7 @@ class TwigExtensionTests extends \PHPUnit_Framework_TestCase
     protected function entityWithName($name)
     {
         $this->entityMock = $this->getMock('Kunstmaan\NodeBundle\Entity\AbstractPage');
-        $this->entityMock->expects($this->once())->method('getTitle')->will($this->returnValue($name));
+        $this->entityMock->expects($this->once())->method('getTitle')->willReturn($name);
     }
 
     /**
@@ -83,7 +83,7 @@ class TwigExtensionTests extends \PHPUnit_Framework_TestCase
         $this->ensureSeoRepoMock();
         $this->seoRepoMock->expects($this->once())
             ->method('findFor')
-            ->will($this->returnValue(null));
+            ->willReturn(null);
 
         $this->wireUpSeoRepo();
     }
@@ -106,7 +106,7 @@ class TwigExtensionTests extends \PHPUnit_Framework_TestCase
         $this->emMock->expects($this->once())
             ->method('getRepository')
             ->with($this->equalTo('KunstmaanSeoBundle:Seo'))
-            ->will($this->returnValue($this->seoRepoMock));
+            ->willReturn($this->seoRepoMock);
     }
 
     /**
@@ -122,7 +122,7 @@ class TwigExtensionTests extends \PHPUnit_Framework_TestCase
 
         $this->seoRepoMock->expects($this->once())
             ->method('findFor')
-            ->will($this->returnValue($seoMock));
+            ->willReturn($seoMock);
 
         $this->wireUpSeoRepo();
     }

@@ -17,8 +17,6 @@ class OrderPreparer
      * Only one request is made per order/SKU.
      * So the same SKUs on multiple lines need to be grouped.
      *
-     * @param Order $order
-     *
      * @return Order
      */
     public function prepare(Order $order)

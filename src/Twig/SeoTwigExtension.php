@@ -32,9 +32,6 @@ class SeoTwigExtension extends Twig_Extension
      */
     private $seoCache = [];
 
-    /**
-     * @param EntityManager $em
-     */
     public function __construct(EntityManager $em)
     {
         $this->em = $em;
@@ -70,7 +67,7 @@ class SeoTwigExtension extends Twig_Extension
      */
     public function getAbsoluteUrl($url, $host = null)
     {
-        $validUrl = filter_var($url, FILTER_VALIDATE_URL);
+        $validUrl = filter_var($url, \FILTER_VALIDATE_URL);
         $host = rtrim($host, '/');
 
         if (false === !$validUrl) {
@@ -86,8 +83,6 @@ class SeoTwigExtension extends Twig_Extension
     }
 
     /**
-     * @param AbstractPage $entity
-     *
      * @return Seo
      */
     public function getSeoFor(AbstractPage $entity)
@@ -160,10 +155,9 @@ class SeoTwigExtension extends Twig_Extension
     }
 
     /**
-     * @param \Twig_Environment $environment
-     * @param object            $entity      The entity
-     * @param mixed             $currentNode The current node
-     * @param string            $template    The template
+     * @param object $entity      The entity
+     * @param mixed  $currentNode The current node
+     * @param string $template    The template
      *
      * @return string
      */
@@ -182,10 +176,9 @@ class SeoTwigExtension extends Twig_Extension
     }
 
     /**
-     * @param \Twig_Environment $environment
-     * @param object            $entity      The entity
-     * @param mixed             $currentNode The current node
-     * @param string            $template    The template
+     * @param object $entity      The entity
+     * @param mixed  $currentNode The current node
+     * @param string $template    The template
      *
      * @return string
      */
@@ -248,8 +241,6 @@ class SeoTwigExtension extends Twig_Extension
     }
 
     /**
-     * @param array $values
-     *
      * @return string
      */
     protected function getPreferredValue(array $values)

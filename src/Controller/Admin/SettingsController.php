@@ -19,8 +19,6 @@ class SettingsController extends Controller
      * @Route(path="/", name="KunstmaanSeoBundle_settings_robots")
      * @Template(template="@KunstmaanSeo/Admin/Settings/robotsSettings.html.twig")
      *
-     * @param Request $request
-     *
      * @return array|RedirectResponse
      */
     public function robotsSettingsAction(Request $request)

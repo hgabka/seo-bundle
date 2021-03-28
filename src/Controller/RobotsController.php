@@ -15,8 +15,6 @@ class RobotsController extends Controller
      *
      * @Route(path="/robots.txt", name="HgabkaSeoBundle_robots", defaults={"_format": "txt"})
      *
-     * @param Request $request
-     *
      * @return array
      */
     public function indexAction(Request $request)

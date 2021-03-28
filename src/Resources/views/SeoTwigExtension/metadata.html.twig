@@ -11,6 +11,9 @@
     {% else %}
         <meta name="robots" content="all">
     {% endif %}
+    {% if seo.metaTitle is not empty %}
+        <meta name="title" content="{{ seo.metaTitle }}">
+    {% endif %}
 
     <!-- Open Graph -->
     {% if seo.getOgType() %}
@@ -27,7 +30,7 @@
     {% endif %}
     {% if seo.getOgTitle() %}
         <meta property="og:title" content="{{ seo.getOgTitle() }}">
-    {% else %}
+    {% elseif seo.metaTitle is not empty %}
         <meta property="og:title" content="{{ seo.metaTitle }}">
     {% endif %}
     {% if seo.getOgDescription() %}
