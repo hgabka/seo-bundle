@@ -47,7 +47,10 @@ class SeoManager
             $seo = $this->manager->getRepository(Seo::class)->findOrCreateFor($entity);
             $general = $this->getGeneralSeo();
 
-            $this->mergeSeo($seo, $general);
+            if (!empty($general)) {
+                $this->mergeSeo($seo, $general);
+            }
+
             $this->seoCache[$key] = $seo;
         }
 
