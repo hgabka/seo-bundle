@@ -17,9 +17,7 @@ services:
 
     hgabka_seo.twig.extension:
         class: Hgabka\SeoBundle\Twig\SeoTwigExtension
-        arguments: ['@doctrine.orm.entity_manager']
-        calls:
-            - [setWebsiteTitle, ['%websitetitle%']]
+        arguments: ['@doctrine.orm.entity_manager', '@hgabka_seo.seo_manager']
         tags:
             - { name: twig.extension }
 
@@ -55,3 +53,12 @@ services:
         arguments: ['@hgabka_seo.admin.seo', '@hgabka_seo.admin.robots']
         tags:
         - { name: kernel.event_listener, event: sonata.admin.event.configure.menu.sidebar, method: addMenuItems }
+
+    hgabka_seo.seo_manager:
+        alias: Hgabka\SeoBundle\Helper\SeoManager
+
+    Hgabka\SeoBundle\Helper\SeoManager:
+        autoconfigure: true
+        autowire: true
+        arguments:
+            $websiteTitle: '%websitetitle%'
