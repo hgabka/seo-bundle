@@ -44,7 +44,7 @@
         <meta property="og:url" content="{{ seo.ogUrl | replace_url }}">
     {% else %}
         {% if currentNode is defined and currentNode is not empty %}
-            <meta property="og:url" content="{{ url('_slug', { 'url': currentNode.slug, '_locale': app.request.locale }) }}"/>
+            <meta property="og:url" content="{{ get_url_by_node(currentNode) }}"/>
         {% endif %}
     {% endif %}
     {% if seo.getOgImage() is defined and seo.getOgImage() is not null %}
