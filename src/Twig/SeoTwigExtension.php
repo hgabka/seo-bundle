@@ -3,6 +3,7 @@
 namespace Hgabka\SeoBundle\Twig;
 
 use Doctrine\ORM\EntityManager;
+use Hgabka\NodeBundle\Entity\AbstractPage;
 use Hgabka\SeoBundle\Entity\Seo;
 use Hgabka\SeoBundle\Helper\SeoManager;
 use Twig_Extension;
@@ -108,5 +109,41 @@ class SeoTwigExtension extends Twig_Extension
     public function getImageDimensions($src)
     {
         return $this->seoManager->getImageDimensions($src);
+    }
+
+
+    /**
+     * The first value that is not null or empty will be returned.
+     *
+     * @param AbstractPage $entity the entity for which you want the page title
+     *
+     * @return string The page title. Will look in the SEO meta first, then the NodeTranslation, then the page.
+     */
+    public function getTitleFor(AbstractPage $entity)
+    {
+        return $this->seoManager->getTitleFor($entity);
+    }
+
+    /**
+     * The first value that is not null or empty will be returned.
+     *
+     * @param AbstractPage $entity the entity for which you want the page title
+     *
+     * @return string The page title. Will look in the SEO meta first, then the NodeTranslation, then the page.
+     */
+    public function getTitle()
+    {
+        return $this->seoManager->getTitle();
+    }
+
+    /**
+     * @param AbstractPage $entity
+     * @param null|string  $default if given we'll return this text if no SEO title was found
+     *
+     * @return string
+     */
+    public function getTitleForPageOrDefault(AbstractPage $entity = null, $default = null)
+    {
+        return $this->seoManager->getTitleForPageOrDefault($entity, $default);
     }
 }
