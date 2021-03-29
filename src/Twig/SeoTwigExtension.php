@@ -111,7 +111,6 @@ class SeoTwigExtension extends Twig_Extension
         return $this->seoManager->getImageDimensions($src);
     }
 
-
     /**
      * The first value that is not null or empty will be returned.
      *
