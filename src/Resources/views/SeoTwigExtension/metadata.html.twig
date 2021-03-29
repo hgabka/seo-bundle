@@ -1,4 +1,4 @@
-{% if seo is not empty %}
+{% if seo is defined and seo is not empty %}
     <!-- SEO -->
     {% if seo.getMetaDescription() %}
         <meta name="description" content="{{ seo.getMetaDescription() }}">
@@ -43,7 +43,7 @@
     {% if seo.getOgUrl() %}
         <meta property="og:url" content="{{ seo.ogUrl | replace_url }}">
     {% else %}
-        {% if currentNode %}
+        {% if currentNode is defined and currentNode is not empty %}
             <meta property="og:url" content="{{ url('_slug', { 'url': currentNode.slug, '_locale': app.request.locale }) }}"/>
         {% endif %}
     {% endif %}
