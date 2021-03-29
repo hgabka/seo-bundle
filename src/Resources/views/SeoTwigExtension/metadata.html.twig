@@ -45,6 +45,8 @@
     {% else %}
         {% if currentNode is defined and currentNode is not empty %}
             <meta property="og:url" content="{{ get_url_by_node(currentNode) }}"/>
+        {% elseif page is defined and page is not empty %}
+            <meta property="og:url" content="{{ get_url_by_page(page) }}"/>
         {% endif %}
     {% endif %}
     {% if seo.getOgImage() is defined and seo.getOgImage() is not null %}
