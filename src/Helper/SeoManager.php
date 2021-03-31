@@ -150,7 +150,7 @@ class SeoManager
      *
      * @return null|array
      */
-    public function getImageDimensions($src): array
+    public function getImageDimensions($src): ?array
     {
         try {
             [$width, $height] = getimagesize($src);
