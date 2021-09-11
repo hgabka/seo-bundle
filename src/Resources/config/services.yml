@@ -62,3 +62,8 @@ services:
         autowire: true
         arguments:
             $websiteTitle: '%websitetitle%'
+
+    Hgabka\SeoBundle\Repository\SeoRepository:
+        autoconfigure: true
+        autowire: true
+

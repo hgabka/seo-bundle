@@ -2,15 +2,22 @@
 
 namespace Hgabka\SeoBundle\Repository;
 
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Hgabka\SeoBundle\Entity\Seo;
 use Hgabka\UtilsBundle\Helper\ClassLookup;
 
 /**
  * Repository for Seo.
  */
-class SeoRepository extends EntityRepository
+class SeoRepository extends ServiceEntityRepository
 {
+    public function __construct(ManagerRegistry $registry)
+    {
+        parent::__construct($registry, Seo::class);
+    }
+
     /**
      * Find the seo information for the given entity.
      *
