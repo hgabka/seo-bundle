@@ -4,11 +4,11 @@ namespace Hgabka\SeoBundle\Controller;
 
 use Hgabka\SeoBundle\Entity\Robots;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class RobotsController extends Controller
+class RobotsController extends AbstractController
 {
     /**
      * Generates the robots.txt content when available in the database and falls back to normal robots.txt if exists.
