@@ -21,7 +21,7 @@ class SeoAdmin extends AbstractAdmin
      *
      * @return array
      */
-    public function getDashboardActions()
+    protected function configureDashboardActions(array $actions): array
     {
         $actions = [];
 
@@ -37,14 +37,14 @@ class SeoAdmin extends AbstractAdmin
         return $actions;
     }
 
-    public function configureActionButtons($action, $object = null)
+    protected function configureActionButtons(array $buttonList, string $action, ?object $object = null): array
     {
-        $list = parent::configureActionButtons($action, $object);
+        $list = parent::configureActionButtons($buttonList, $action, $object);
 
         return array_intersect_key($list, ['list' => null]);
     }
 
-    protected function configureFormFields(FormMapper $form)
+    protected function configureFormFields(FormMapper $form): void
     {
         $form
             ->tab('hg_seo.tab.seo.title')
