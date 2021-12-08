@@ -7,11 +7,11 @@ use Hgabka\SeoBundle\Form\RobotsType;
 use Hgabka\UtilsBundle\FlashMessages\FlashTypes;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-class SettingsController extends Controller
+class SettingsController extends AbstractController
 {
     /**
      * Generates the robots administration form and fills it with a default value if needed.
