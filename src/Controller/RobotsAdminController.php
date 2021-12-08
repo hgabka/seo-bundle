@@ -5,12 +5,13 @@ namespace Hgabka\SeoBundle\Controller;
 use Hgabka\SeoBundle\Entity\Robots;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sonata\AdminBundle\Controller\CRUDController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class RobotsAdminController extends CRUDController
 {
-    public function createAction()
+    public function createAction(Request $request): Response
     {
-        $request = $this->getRequest();
         // the key used to lookup the template
         $templateKey = 'edit';
 
@@ -129,17 +130,17 @@ class RobotsAdminController extends CRUDController
         ], null);
     }
 
-    public function editAction($id = null)
+    public function editAction(Request $request): Response
     {
         return $this->redirect($this->admin->generateUrl('create'));
     }
 
-    public function listAction()
+    public function listAction(Request $request): Response
     {
         return $this->redirectToRoute('sonata_admin_dashboard');
     }
 
-    public function deleteAction($id)
+    public function deleteAction(Request $request): Response
     {
         return $this->redirect($this->admin->generateUrl('create'));
     }
