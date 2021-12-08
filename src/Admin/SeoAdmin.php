@@ -30,7 +30,7 @@ class SeoAdmin extends AbstractAdmin
                 'label' => 'hg_seo.admin.label.seo',
                 'translation_domain' => 'messages',
                 'url' => $this->generateUrl('create'),
-                'icon' => 'fas fa-google',
+                'icon' => 'fa fa-google',
             ];
         }
 
