@@ -11,7 +11,6 @@ class SeoAdminController extends CRUDController
 {
     public function createAction(Request $request): Response
     {
-        $request = $this->getRequest();
         // the key used to lookup the template
         $templateKey = 'edit';
 
