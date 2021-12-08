@@ -3,7 +3,7 @@ services:
         class: Hgabka\SeoBundle\Admin\RobotsAdmin
         tags:
         - { name: sonata.admin, manager_type: orm, group: hg_seo.group, icon: '<i class="fa fa-google"></i>', label: hg_seo.admin.label.robots, label_catalogue: 'HgabkaSeoBundle', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
-        arguments: [null, Hgabka\SeoBundle\Entity\Robots, HgabkaSeoBundle:RobotsAdmin]
+        arguments: [null, Hgabka\SeoBundle\Entity\Robots, Hgabka\SeoBundle\Controller\RobotsAdminController]
         calls:
         - [ setTemplate, ['edit', '@@HgabkaSeo/Admin/Robots/create.html.twig']]
 
@@ -11,7 +11,7 @@ services:
         class: Hgabka\SeoBundle\Admin\SeoAdmin
         tags:
         - { name: sonata.admin, manager_type: orm, group: hg_seo.group, icon: '<i class="fa fa-android"></i>', label: hg_seo.admin.label.seo, label_catalogue: 'HgabkaSeoBundle', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
-        arguments: [null, Hgabka\SeoBundle\Entity\Seo, HgabkaSeoBundle:SeoAdmin]
+        arguments: [null, Hgabka\SeoBundle\Entity\Seo, Hgabka\SeoBundle\Controller\SeoAdminController]
         calls:
             - [ setTemplate, ['edit', '@@HgabkaSeo/Admin/Seo/create.html.twig']]
 
@@ -67,3 +67,12 @@ services:
         autoconfigure: true
         autowire: true
 
+    Hgabka\SeoBundle\Controller\RobotsAdminController:
+        autoconfigure: true
+        autowire: true
+
+    Hgabka\SeoBundle\Controller\SeoAdminController:
+        autoconfigure: true
+        autowire: true
+
+    
