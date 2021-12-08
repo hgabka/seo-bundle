@@ -24,7 +24,7 @@ class RobotsAdmin extends AbstractAdmin
                 'label' => 'hg_seo.admin.label.robots',
                 'translation_domain' => 'messages',
                 'url' => $this->generateUrl('create'),
-                'icon' => 'share-square',
+                'icon' => 'fas fa-share-square',
             ];
         }
 
