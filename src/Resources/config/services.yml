@@ -75,4 +75,12 @@ services:
         autoconfigure: true
         autowire: true
 
+    Hgabka\SeoBundle\Controller\RobotsController:
+        autoconfigure: true
+        autowire: true
+
+    Hgabka\SeoBundle\Controller\Admin\SettingsController:
+        autoconfigure: true
+        autowire: true
+
     
