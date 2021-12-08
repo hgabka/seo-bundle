@@ -6,12 +6,14 @@ use Doctrine\ORM\EntityManager;
 use Hgabka\NodeBundle\Entity\AbstractPage;
 use Hgabka\SeoBundle\Entity\Seo;
 use Hgabka\SeoBundle\Helper\SeoManager;
-use Twig_Extension;
+use Twig\Environment;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * Twig extensions for Seo.
  */
-class SeoTwigExtension extends Twig_Extension
+class SeoTwigExtension extends AbstractExtension
 {
     /**
      * @var EntityManager
@@ -35,14 +37,14 @@ class SeoTwigExtension extends Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('render_seo_metadata_for', [$this, 'renderSeoMetadataFor'], ['is_safe' => ['html'], 'needs_environment' => true]),
-            new \Twig_SimpleFunction('render_general_seo_metadata', [$this, 'renderGeneralSeoMetadata'], ['is_safe' => ['html'], 'needs_environment' => true]),
-            new \Twig_SimpleFunction('get_seo_for', [$this, 'getSeoFor']),
-            new \Twig_SimpleFunction('get_title', [$this, 'getTitle']),
-            new \Twig_SimpleFunction('get_title_for', [$this, 'getTitleFor']),
-            new \Twig_SimpleFunction('get_title_for_page_or_default', [$this, 'getTitleForPageOrDefault']),
-            new \Twig_SimpleFunction('get_absolute_url', [$this, 'getAbsoluteUrl']),
-            new \Twig_SimpleFunction('get_image_dimensions', [$this, 'getImageDimensions']),
+            new TwigFunction('render_seo_metadata_for', [$this, 'renderSeoMetadataFor'], ['is_safe' => ['html'], 'needs_environment' => true]),
+            new TwigFunction('render_general_seo_metadata', [$this, 'renderGeneralSeoMetadata'], ['is_safe' => ['html'], 'needs_environment' => true]),
+            new TwigFunction('get_seo_for', [$this, 'getSeoFor']),
+            new TwigFunction('get_title', [$this, 'getTitle']),
+            new TwigFunction('get_title_for', [$this, 'getTitleFor']),
+            new TwigFunction('get_title_for_page_or_default', [$this, 'getTitleForPageOrDefault']),
+            new TwigFunction('get_absolute_url', [$this, 'getAbsoluteUrl']),
+            new TwigFunction('get_image_dimensions', [$this, 'getImageDimensions']),
         ];
     }
 
@@ -67,10 +69,10 @@ class SeoTwigExtension extends Twig_Extension
      *
      * @return string
      */
-    public function renderSeoMetadataFor(\Twig_Environment $environment, $entity, $currentNode = null, $template = '@HgabkaSeo/SeoTwigExtension/metadata.html.twig')
+    public function renderSeoMetadataFor(Environment $environment, $entity, $currentNode = null, $template = '@HgabkaSeo/SeoTwigExtension/metadata.html.twig')
     {
         $seo = $this->seoManager->getSeoFor($entity);
-        $template = $environment->loadTemplate($template);
+        $template = $environment->load($template);
 
         return $template->render(
             [
@@ -88,10 +90,10 @@ class SeoTwigExtension extends Twig_Extension
      *
      * @return string
      */
-    public function renderGeneralSeoMetadata(\Twig_Environment $environment, $template = '@HgabkaSeo/SeoTwigExtension/metadata.html.twig')
+    public function renderGeneralSeoMetadata(Environment $environment, $template = '@HgabkaSeo/SeoTwigExtension/metadata.html.twig')
     {
         $seo = $this->seoManager->getGeneralSeo();
-        $template = $environment->loadTemplate($template);
+        $template = $environment->load($template);
 
         return $template->render(
             [
