@@ -5,13 +5,14 @@ namespace Hgabka\SeoBundle\Twig;
 use Hgabka\SeoBundle\Helper\Order;
 use Hgabka\SeoBundle\Helper\OrderConverter;
 use Hgabka\SeoBundle\Helper\OrderPreparer;
-use Twig_Environment;
-use Twig_Extension;
+use Twig\Environment;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
 /**
  * Twig extensions for Google Analytics.
  */
-class GoogleAnalyticsTwigExtension extends Twig_Extension
+class GoogleAnalyticsTwigExtension extends AbstractExtension
 {
     protected $accountVarName = 'account_id';
 
@@ -28,15 +29,15 @@ class GoogleAnalyticsTwigExtension extends Twig_Extension
      *
      * @return array An array of functions
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
-            new \Twig_SimpleFunction(
+            new TwigFunction(
                 'google_analytics_initialize',
                 [$this, 'renderInitialize'],
                 ['is_safe' => ['html'], 'needs_environment' => true]
             ),
-            new \Twig_SimpleFunction(
+            new TwigFunction(
                 'google_analytics_track_order',
                 [$this, 'renderECommerceTracking'],
                 ['is_safe' => ['html'], 'needs_environment' => true]
@@ -80,7 +81,7 @@ class GoogleAnalyticsTwigExtension extends Twig_Extension
      *
      * @return string the HTML rendered
      */
-    public function renderInitialize(Twig_Environment $environment, $options = null)
+    public function renderInitialize(Environment $environment, ?array $options = null)
     {
         if (null === $options) {
             $options = [];
@@ -105,7 +106,7 @@ class GoogleAnalyticsTwigExtension extends Twig_Extension
     /**
      * @return string the HTML rendered
      */
-    public function renderECommerceTracking(Twig_Environment $environment, Order $order)
+    public function renderECommerceTracking(Environment $environment, Order $order)
     {
         $order = $this->orderPreparer->prepare($order);
         $options = $this->orderConverter->convert($order);
