@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SeoAdminController extends CRUDController
 {
-    public function createAction(Request: $request): Response
+    public function createAction(Request $request): Response
     {
         $request = $this->getRequest();
         // the key used to lookup the template
