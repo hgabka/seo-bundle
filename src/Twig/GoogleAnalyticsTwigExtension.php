@@ -110,8 +110,8 @@ class GoogleAnalyticsTwigExtension extends AbstractExtension
     {
         $order = $this->orderPreparer->prepare($order);
         $options = $this->orderConverter->convert($order);
-        $template = $environment->loadTemplate(
-            'HgabkaSeoBundle:GoogleAnalyticsTwigExtension:ecommerce_tracking.html.twig'
+        $template = $environment->load(
+            '@HgabkaSeo/GoogleAnalyticsTwigExtension/ecommerce_tracking.html.twig'
         );
 
         return $template->render($options);
