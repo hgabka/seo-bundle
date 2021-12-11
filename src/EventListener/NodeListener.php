@@ -38,7 +38,7 @@ class NodeListener
 
             $socialWidget = new FormWidget();
             $socialWidget->addType('social', SocialType::class, $seo);
-            $socialWidget->setTemplate('HgabkaSeoBundle:Admin\Social:social.html.twig');
+            $socialWidget->setTemplate('@HgabkaSeo/Admin/Social:social.html.twig');
             $event->getTabPane()->addTab(new Tab('hg_seo.tab.social.title', $socialWidget));
         }
     }
