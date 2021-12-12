@@ -41,7 +41,7 @@ class SeoManager
      */
     public function getSeoFor(AbstractPage $entity)
     {
-        $key = md5(\get_class($entity).$entity->getId());
+        $key = md5(\get_class($entity) . $entity->getId());
 
         if (!\array_key_exists($key, $this->seoCache)) {
             $seo = $this->manager->getRepository(Seo::class)->findOrCreateFor($entity);
@@ -139,7 +139,7 @@ class SeoManager
         }
         // Prepend with $host if $url starts with "/"
         if ('/' === $url[0]) {
-            return $url = $host.$url;
+            return $url = $host . $url;
         }
 
         return false;

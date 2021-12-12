@@ -25,7 +25,7 @@ class RobotsController extends AbstractController
         if ($entity && $entity->getRobotsTxt()) {
             $robots = $entity->getRobotsTxt();
         } else {
-            $file = $request->getBasePath().'robots.txt';
+            $file = $request->getBasePath() . 'robots.txt';
             if (file_exists($file)) {
                 $robots = file_get_contents($file);
             }

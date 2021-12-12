@@ -3,7 +3,6 @@
 namespace Hgabka\SeoBundle\Repository;
 
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\EntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Hgabka\SeoBundle\Entity\Seo;
 use Hgabka\UtilsBundle\Helper\ClassLookup;
