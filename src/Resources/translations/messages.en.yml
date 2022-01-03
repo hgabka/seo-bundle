@@ -3,6 +3,14 @@ breadcrumb:
     link_robots_list: SEO settings
     link_seo_list: SEO settings
 
+form:
+  group_hg_seo_tab_seo_title: SEO
+  group_hg_seo_tab_social_title: Social Media
+  group_hg_seo_block_seo: SEO settings
+  group_hg_seo_admin_label_robots: Robots.txt settings
+  group_hg_seo_pagetabs_opengraph: Open Graph
+  group_hg_seo_pagetabs_twittercards: Twitter
+
 hg_seo:
     block:
         seo: SEO settings
