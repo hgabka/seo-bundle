@@ -2,7 +2,11 @@
 breadcrumb:
     link_robots_list: SEO beállítások
     link_seo_list: SEO beállítások
-
+form:
+  group_hg_seo_tab_seo_title: SEO
+  group_hg_seo_tab_social_title: Közösségi média
+  group_hg_seo_block_seo: SEO beállítások
+  
 hg_seo:
     block:
         seo: SEO beállítások
