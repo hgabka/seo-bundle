@@ -50,7 +50,7 @@ class RobotsAdminController extends CRUDController
             $isFormValid = $form->isValid();
 
             // persist if the form was valid and if in preview mode the preview was approved
-            if ($isFormValid && (!$this->isInPreviewMode() || $this->isPreviewApproved())) {
+            if ($isFormValid && (!$this->isInPreviewMode($request) || $this->isPreviewApproved($request))) {
                 $submittedObject = $form->getData();
                 $this->admin->setSubject($submittedObject);
 
@@ -75,7 +75,7 @@ class RobotsAdminController extends CRUDController
                     );
 
                     // redirect to edit mode
-                    return $this->redirectTo($existingObject);
+                    return $this->redirectTo($request, $existingObject);
                 } catch (ModelManagerException $e) {
                     $this->handleModelManagerException($e);
 
