@@ -109,12 +109,8 @@ class RobotsAdminController extends CRUDController
         }
 
         $formView = $form->createView();
-        // set the theme for the current Admin Form
-        // $this->setFormTheme($formView, $this->admin->getFormTheme());
+        $template = $this->admin->getTemplateRegistry()->getTemplate($templateKey);
 
-        // NEXT_MAJOR: Remove this line and use commented line below it instead
-        $template = $this->admin->getTemplate($templateKey);
-        // $template = $this->templateRegistry->getTemplate($templateKey);
         if (!$isSaved) {
             $this->addFlash(
                 'sonata_flash_warning',
