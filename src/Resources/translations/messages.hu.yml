@@ -7,6 +7,8 @@ form:
   group_hg_seo_tab_social_title: Közösségi média
   group_hg_seo_block_seo: SEO beállítások
   group_hg_seo_admin_label_robots: Robots.txt beállítás
+  group_hg_seo_pagetabs_opengraph: Open Graph
+  group_hg_seo_pagetabs_twittercards: Twitter
   
 hg_seo:
     block:
