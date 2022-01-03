@@ -57,7 +57,7 @@ class RobotsAdminController extends CRUDController
                 try {
                     $existingObject = $this->admin->update($submittedObject);
 
-                    if ($this->isXmlHttpRequest()) {
+                    if ($this->isXmlHttpRequest($request)) {
                         return $this->renderJson([
                             'result' => 'ok',
                             'objectId' => $objectId,
@@ -91,7 +91,7 @@ class RobotsAdminController extends CRUDController
 
             // show an error message if the form failed validation
             if (!$isFormValid) {
-                if (!$this->isXmlHttpRequest()) {
+                if (!$this->isXmlHttpRequest($request)) {
                     $this->addFlash(
                         'sonata_flash_error',
                         $this->trans(
@@ -101,7 +101,7 @@ class RobotsAdminController extends CRUDController
                         )
                     );
                 }
-            } elseif ($this->isPreviewRequested()) {
+            } elseif ($this->isPreviewRequested($request)) {
                 // enable the preview template if the form was valid and preview was requested
                 $templateKey = 'preview';
                 $this->admin->getShow();
