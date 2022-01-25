@@ -109,7 +109,7 @@ class SeoAdminController extends CRUDController
 
         $formView = $form->createView();
         $template = $this->admin->getTemplateRegistry()->getTemplate($templateKey);
-        
+
         if (!$isSaved) {
             $this->addFlash(
                 'sonata_flash_warning',
