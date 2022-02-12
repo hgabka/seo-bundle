@@ -202,7 +202,7 @@ class SeoManager
         }
 
         $image1 = $seo1->getTwitterImage();
-        $image2 = $seo2->getTwitterCreator();
+        $image2 = $seo2->getTwitterImage();
         
         if (empty($image1) && !empty($image2)) {
             $seo1->setTwitterImage($image2);
