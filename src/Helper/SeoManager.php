@@ -2,10 +2,17 @@
 
 namespace Hgabka\SeoBundle\Helper;
 
+use function array_key_exists;
 use Doctrine\ORM\EntityManagerInterface;
+use function filter_var;
+use function get_class;
+use function getimagesize;
 use Hgabka\NodeBundle\Entity\AbstractPage;
 use Hgabka\SeoBundle\Entity\Seo;
 use Hgabka\UtilsBundle\Helper\HgabkaUtils;
+use function is_file;
+use function str_replace;
+use function strpos;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class SeoManager
@@ -54,9 +61,9 @@ class SeoManager
      */
     public function getSeoFor(AbstractPage $entity)
     {
-        $key = md5(\get_class($entity) . $entity->getId());
+        $key = md5(get_class($entity) . $entity->getId());
 
-        if (!\array_key_exists($key, $this->seoCache)) {
+        if (!array_key_exists($key, $this->seoCache)) {
             $seo = $this->manager->getRepository(Seo::class)->findOrCreateFor($entity);
             $general = $this->getGeneralSeo();
 
@@ -166,8 +173,8 @@ class SeoManager
     public function getImageDimensions($src): ?array
     {
         if (0 === strpos($src, $this->hgabkaUtils->getSchemeAndHttpHost())) {
-            $file = str_replace($this->hgabkaUtils->getSchemeAndHttpHost(), $this->projectDir.'/public', $src);
-            if (file_exists($file)) {
+            $file = str_replace($this->hgabkaUtils->getSchemeAndHttpHost(), $this->projectDir . '/public', $src);
+            if (is_file($file)) {
                 $src = $file;
             }
         }
