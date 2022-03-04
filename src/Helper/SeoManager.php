@@ -5,6 +5,7 @@ namespace Hgabka\SeoBundle\Helper;
 use Doctrine\ORM\EntityManagerInterface;
 use Hgabka\NodeBundle\Entity\AbstractPage;
 use Hgabka\SeoBundle\Entity\Seo;
+use Hgabka\UtilsBundle\Helper\HgabkaUtils;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class SeoManager
@@ -12,12 +13,22 @@ class SeoManager
     /** @var EntityManagerInterface */
     protected $manager;
 
+    /** @var HgabkaUtils */
+    protected $hgabkaUtils;
+
     /**
      * Website title defined in your parameters.
      *
      * @var string
      */
     private $websiteTitle;
+
+    /**
+     * Project dir
+     *
+     * @var string
+     */
+    private $projectDir;
 
     /**
      * Saves querying the db multiple times, if you happen to use any of the defined
@@ -30,10 +41,12 @@ class SeoManager
     /**
      * SeoManager constructor.
      */
-    public function __construct(EntityManagerInterface $manager, string $websiteTitle)
+    public function __construct(EntityManagerInterface $manager, HgabkaUtils $utils, string $websiteTitle, string $projectDir)
     {
         $this->manager = $manager;
+        $this->hgabkaUtils = $utils;
         $this->websiteTitle = $websiteTitle;
+        $this->projectDir = $projectDir;
     }
 
     /**
@@ -152,6 +165,13 @@ class SeoManager
      */
     public function getImageDimensions($src): ?array
     {
+        if (0 === strpos($src, $this->hgabkaUtils->getSchemeAndHttpHost())) {
+            $file = str_replace($this->hgabkaUtils->getSchemeAndHttpHost(), $this->projectDir.'/public', $src);
+            if (file_exists($file)) {
+                $src = $file;
+            }
+        }
+
         try {
             [$width, $height] = getimagesize($src);
         } catch (\Exception $e) {
