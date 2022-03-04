@@ -458,7 +458,7 @@ class Seo
     public function setTwitterTitle($twitterTitle)
     {
         $this->twitterTitle = $twitterTitle;
-        
+
         return $this;
     }
 
@@ -476,7 +476,7 @@ class Seo
     public function setTwitterDescription($twitterDescription)
     {
         $this->twitterDescription = $twitterDescription;
-        
+
         return $this;
     }
 
@@ -494,7 +494,7 @@ class Seo
     public function setTwitterSite($twitterSite)
     {
         $this->twitterSite = $twitterSite;
-        
+
         return $this;
     }
 
@@ -512,7 +512,7 @@ class Seo
     public function setTwitterCreator($twitterCreator)
     {
         $this->twitterCreator = $twitterCreator;
-        
+
         return $this;
     }
 
@@ -530,7 +530,7 @@ class Seo
     public function setTwitterImage($twitterImage)
     {
         $this->twitterImage = $twitterImage;
-        
+
         return $this;
     }
 
