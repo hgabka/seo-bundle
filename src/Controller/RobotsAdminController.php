@@ -23,7 +23,7 @@ class RobotsAdminController extends CRUDController
      * @param ManagerRegistry $doctrine
      * @return RobotsAdminController
      */
-    public function setDoctrine(ManagerRegistry $doctrine): RobotsAdminController
+    public function setDoctrine(ManagerRegistry $doctrine): self
     {
         $this->doctrine = $doctrine;
 
@@ -35,7 +35,7 @@ class RobotsAdminController extends CRUDController
      * @param TranslatorInterface $translator
      * @return RobotsAdminController
      */
-    public function setTranslator(TranslatorInterface $translator): RobotsAdminController
+    public function setTranslator(TranslatorInterface $translator): self
     {
         $this->translator = $translator;
 
