@@ -2,6 +2,7 @@
 
 namespace Hgabka\SeoBundle\Controller;
 
+use Doctrine\Persistence\ManagerRegistry;
 use Hgabka\SeoBundle\Entity\Seo;
 use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\HttpFoundation\Request;
@@ -9,6 +10,23 @@ use Symfony\Component\HttpFoundation\Response;
 
 class SeoAdminController extends CRUDController
 {
+    /** @var ManagerRegistry */
+    protected $doctrine;
+
+    /**
+     * @required
+     * @param ManagerRegistry $doctrine
+     * @return SeoAdminController
+     */
+    public function setDoctrine(ManagerRegistry $doctrine): SeoAdminController
+    {
+        $this->doctrine = $doctrine;
+
+        return $this;
+    }
+
+
+
     public function createAction(Request $request): Response
     {
         // the key used to lookup the template
