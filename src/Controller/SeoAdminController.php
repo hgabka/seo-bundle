@@ -2,19 +2,51 @@
 
 namespace Hgabka\SeoBundle\Controller;
 
+use Doctrine\Persistence\ManagerRegistry;
 use Hgabka\SeoBundle\Entity\Seo;
 use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SeoAdminController extends CRUDController
 {
+    /** @var ManagerRegistry */
+    protected $doctrine;
+
+    /** @var TranslatorInterface */
+    protected $translator;
+
+    /**
+     * @required
+     * @param ManagerRegistry $doctrine
+     * @return SeoAdminController
+     */
+    public function setDoctrine(ManagerRegistry $doctrine): SeoAdminController
+    {
+        $this->doctrine = $doctrine;
+
+        return $this;
+    }
+
+    /**
+     * @required
+     * @param TranslatorInterface $translator
+     * @return RobotsAdminController
+     */
+    public function setTranslator(TranslatorInterface $translator): RobotsAdminController
+    {
+        $this->translator = $translator;
+
+        return $this;
+    }
+
     public function createAction(Request $request): Response
     {
         // the key used to lookup the template
         $templateKey = 'edit';
 
-        $repo = $this->getDoctrine()->getRepository(Seo::class);
+        $repo = $this->doctrine->getRepository(Seo::class);
         $seo = $repo->findGeneral();
 
         $isSaved = true;
@@ -93,7 +125,7 @@ class SeoAdminController extends CRUDController
                 if (!$this->isXmlHttpRequest($request)) {
                     $this->addFlash(
                         'sonata_flash_error',
-                        $this->trans(
+                        $this->translator->trans(
                             'flash_edit_error',
                             ['%name%' => $this->escapeHtml($this->admin->toString($existingObject))],
                             'SonataAdminBundle'
@@ -113,7 +145,7 @@ class SeoAdminController extends CRUDController
         if (!$isSaved) {
             $this->addFlash(
                 'sonata_flash_warning',
-                $this->get('translator')->trans('seo.robots.warning')
+                $this->translator->trans('seo.robots.warning')
             );
         }
 
