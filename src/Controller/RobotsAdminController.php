@@ -2,20 +2,53 @@
 
 namespace Hgabka\SeoBundle\Controller;
 
+use Doctrine\Persistence\ManagerRegistry;
 use Hgabka\SeoBundle\Entity\Robots;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RobotsAdminController extends CRUDController
 {
+    /** @var ManagerRegistry */
+    protected $doctrine;
+    
+    /** @var TranslatorInterface */
+    protected $translator;
+
+    /**
+     * @required
+     * @param ManagerRegistry $doctrine
+     * @return RobotsAdminController
+     */
+    public function setDoctrine(ManagerRegistry $doctrine): RobotsAdminController
+    {
+        $this->doctrine = $doctrine;
+
+        return $this;
+    }
+
+    /**
+     * @required
+     * @param TranslatorInterface $translator
+     * @return RobotsAdminController
+     */
+    public function setTranslator(TranslatorInterface $translator): RobotsAdminController
+    {
+        $this->translator = $translator;
+
+        return $this;
+    }
+
+    
     public function createAction(Request $request): Response
     {
         // the key used to lookup the template
         $templateKey = 'edit';
 
-        $repo = $this->getDoctrine()->getRepository(Robots::class);
+        $repo = $this->doctrine->getRepository(Robots::class);
         $robot = $repo->findOneBy([]);
         $default = $this->getParameter('robots_default');
         $isSaved = true;
@@ -114,7 +147,7 @@ class RobotsAdminController extends CRUDController
         if (!$isSaved) {
             $this->addFlash(
                 'sonata_flash_warning',
-                $this->get('translator')->trans('seo.robots.warning')
+                $this->translator->trans('seo.robots.warning')
             );
         }
 
