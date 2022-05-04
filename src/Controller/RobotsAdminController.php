@@ -8,11 +8,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RobotsAdminController extends CRUDController
 {
     /** @var ManagerRegistry */
     protected $doctrine;
+
+    /** @var TranslatorInterface */
+    protected $translator;
 
     /**
      * @required
@@ -22,6 +26,18 @@ class RobotsAdminController extends CRUDController
     public function setDoctrine(ManagerRegistry $doctrine): RobotsAdminController
     {
         $this->doctrine = $doctrine;
+
+        return $this;
+    }
+
+    /**
+     * @required
+     * @param TranslatorInterface $translator
+     * @return RobotsAdminController
+     */
+    public function setTranslator(TranslatorInterface $translator): RobotsAdminController
+    {
+        $this->translator = $translator;
 
         return $this;
     }
@@ -83,7 +99,7 @@ class RobotsAdminController extends CRUDController
 
                     $this->addFlash(
                         'sonata_flash_success',
-                        $this->trans(
+                        $this->translator->trans(
                             'flash_edit_success',
                             ['%name%' => $this->escapeHtml($this->admin->toString($existingObject))],
                             'SonataAdminBundle'
@@ -130,7 +146,7 @@ class RobotsAdminController extends CRUDController
         if (!$isSaved) {
             $this->addFlash(
                 'sonata_flash_warning',
-                $this->get('translator')->trans('seo.robots.warning')
+                $this->translator->trans('seo.robots.warning')
             );
         }
 
