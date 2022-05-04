@@ -14,7 +14,7 @@ class RobotsAdminController extends CRUDController
 {
     /** @var ManagerRegistry */
     protected $doctrine;
-    
+
     /** @var TranslatorInterface */
     protected $translator;
 
@@ -42,7 +42,6 @@ class RobotsAdminController extends CRUDController
         return $this;
     }
 
-    
     public function createAction(Request $request): Response
     {
         // the key used to lookup the template
@@ -100,7 +99,7 @@ class RobotsAdminController extends CRUDController
 
                     $this->addFlash(
                         'sonata_flash_success',
-                        $this->trans(
+                        $this->translator->trans(
                             'flash_edit_success',
                             ['%name%' => $this->escapeHtml($this->admin->toString($existingObject))],
                             'SonataAdminBundle'
