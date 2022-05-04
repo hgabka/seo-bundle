@@ -2,6 +2,7 @@
 
 namespace Hgabka\SeoBundle\Controller;
 
+use Doctrine\Persistence\ManagerRegistry;
 use Hgabka\SeoBundle\Entity\Robots;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,9 +18,9 @@ class RobotsController extends AbstractController
      *
      * @return array
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request, ManagerRegistry $doctrine)
     {
-        $entity = $this->getDoctrine()->getRepository(Robots::class)->findOneBy([]);
+        $entity = $doctrine->getRepository(Robots::class)->findOneBy([]);
         $robots = $this->getParameter('robots_default');
 
         if ($entity && $entity->getRobotsTxt()) {
