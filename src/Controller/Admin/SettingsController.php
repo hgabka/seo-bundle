@@ -11,6 +11,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SettingsController extends AbstractController
 {
@@ -22,7 +23,7 @@ class SettingsController extends AbstractController
      *
      * @return array|RedirectResponse
      */
-    public function robotsSettingsAction(Request $request, ManagerRegistry $doctrine)
+    public function robotsSettingsAction(Request $request, ManagerRegistry $doctrine, TranslatorInterface $translator)
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
 
@@ -57,7 +58,7 @@ class SettingsController extends AbstractController
         if (!$isSaved) {
             $this->addFlash(
                 FlashTypes::WARNING,
-                $this->get('translator')->trans('seo.robots.warning')
+                $translator->trans('seo.robots.warning')
             );
         }
 
