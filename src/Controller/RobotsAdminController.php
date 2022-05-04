@@ -2,6 +2,7 @@
 
 namespace Hgabka\SeoBundle\Controller;
 
+use Doctrine\Persistence\ManagerRegistry;
 use Hgabka\SeoBundle\Entity\Robots;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sonata\AdminBundle\Controller\CRUDController;
@@ -10,6 +11,21 @@ use Symfony\Component\HttpFoundation\Response;
 
 class RobotsAdminController extends CRUDController
 {
+    /** @var ManagerRegistry */
+    protected $doctrine;
+
+    /**
+     * @required
+     * @param ManagerRegistry $doctrine
+     * @return RobotsAdminController
+     */
+    public function setDoctrine(ManagerRegistry $doctrine): RobotsAdminController
+    {
+        $this->doctrine = $doctrine;
+
+        return $this;
+    }
+
     public function createAction(Request $request): Response
     {
         // the key used to lookup the template
