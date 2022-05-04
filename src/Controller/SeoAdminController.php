@@ -32,7 +32,7 @@ class SeoAdminController extends CRUDController
         // the key used to lookup the template
         $templateKey = 'edit';
 
-        $repo = $this->getDoctrine()->getRepository(Seo::class);
+        $repo = $this->doctrine->getRepository(Seo::class);
         $seo = $repo->findGeneral();
 
         $isSaved = true;
