@@ -2,6 +2,7 @@
 
 namespace Hgabka\SeoBundle\Controller\Admin;
 
+use Doctrine\Persistence\ManagerRegistry;
 use Hgabka\SeoBundle\Entity\Robots;
 use Hgabka\SeoBundle\Form\RobotsType;
 use Hgabka\UtilsBundle\FlashMessages\FlashTypes;
@@ -21,12 +22,12 @@ class SettingsController extends AbstractController
      *
      * @return array|RedirectResponse
      */
-    public function robotsSettingsAction(Request $request)
+    public function robotsSettingsAction(Request $request, ManagerRegistry $doctrine)
     {
         $this->denyAccessUnlessGranted('ROLE_SUPER_ADMIN');
 
-        $em = $this->getDoctrine()->getManager();
-        $repo = $this->getDoctrine()->getRepository(Robots::class);
+        $em = $doctrine->getManager();
+        $repo = $doctrine->getRepository(Robots::class);
         $robot = $repo->findOneBy([]);
         $default = $this->getParameter('robots_default');
         $isSaved = true;
