@@ -31,7 +31,7 @@ class RobotsAdminController extends CRUDController
         // the key used to lookup the template
         $templateKey = 'edit';
 
-        $repo = $this->getDoctrine()->getRepository(Robots::class);
+        $repo = $this->doctrine->getRepository(Robots::class);
         $robot = $repo->findOneBy([]);
         $default = $this->getParameter('robots_default');
         $isSaved = true;
