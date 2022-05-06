@@ -124,7 +124,7 @@ class GoogleAnalyticsTwigExtension extends AbstractExtension
      * @param string $option the key in the $arr array
      * @param mixed  $value  the new value if the option wasn't set already
      */
-    private function setOptionIfNotSet(&$arr, $option, $value)
+    private function setOptionIfNotSet(& $arr, $option, $value)
     {
         if ($this->isOptionSet($arr, $option)) {
             $arr[$option] = $value;

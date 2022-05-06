@@ -20,7 +20,9 @@ class RobotsAdminController extends CRUDController
 
     /**
      * @required
+     *
      * @param ManagerRegistry $doctrine
+     *
      * @return RobotsAdminController
      */
     public function setDoctrine(ManagerRegistry $doctrine): self
@@ -32,7 +34,9 @@ class RobotsAdminController extends CRUDController
 
     /**
      * @required
+     *
      * @param TranslatorInterface $translator
+     *
      * @return RobotsAdminController
      */
     public function setTranslator(TranslatorInterface $translator): self

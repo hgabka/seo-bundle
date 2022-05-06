@@ -19,7 +19,9 @@ class SeoAdminController extends CRUDController
 
     /**
      * @required
+     *
      * @param ManagerRegistry $doctrine
+     *
      * @return SeoAdminController
      */
     public function setDoctrine(ManagerRegistry $doctrine): self
@@ -31,10 +33,13 @@ class SeoAdminController extends CRUDController
 
     /**
      * @required
+     *
      * @param TranslatorInterface $translator
+     *
      * @return RobotsAdminController
      */
-    public function setTranslator(TranslatorInterface $translator): self    {
+    public function setTranslator(TranslatorInterface $translator): self
+    {
         $this->translator = $translator;
 
         return $this;
