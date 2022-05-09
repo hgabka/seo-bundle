@@ -26,7 +26,7 @@ class NodeListener
         $this->em = $em;
     }
 
-    public function adaptForm(AdaptFormEvent $event)
+    public function adaptForm(AdaptFormEvent $event): void
     {
         if ($event->getPage() instanceof HasNodeInterface && !$event->getPage()->isStructureNode()) {
             // @var Seo $seo

@@ -7,6 +7,7 @@ use Hgabka\SeoBundle\Entity\Seo;
 use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\Service\Attribute\Required;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SeoAdminController extends CRUDController
@@ -17,13 +18,7 @@ class SeoAdminController extends CRUDController
     /** @var TranslatorInterface */
     protected $translator;
 
-    /**
-     * @required
-     *
-     * @param ManagerRegistry $doctrine
-     *
-     * @return SeoAdminController
-     */
+    #[Required]
     public function setDoctrine(ManagerRegistry $doctrine): self
     {
         $this->doctrine = $doctrine;
@@ -31,13 +26,7 @@ class SeoAdminController extends CRUDController
         return $this;
     }
 
-    /**
-     * @required
-     *
-     * @param TranslatorInterface $translator
-     *
-     * @return RobotsAdminController
-     */
+    #[Required]
     public function setTranslator(TranslatorInterface $translator): self
     {
         $this->translator = $translator;

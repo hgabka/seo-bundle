@@ -5,34 +5,24 @@ namespace Hgabka\SeoBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Hgabka\SeoBundle\Form\RobotsType;
 
-/**
- * Robots.txt data.
- *
- * @ORM\Entity
- * @ORM\Table(name="hg_seo_robots")
- */
+#[ORM\Entity]
+#[ORM\Table(name: 'hg_seo_robots')]
 class Robots
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="bigint")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
+    #[ORM\Id]
+    #[ORM\Column(type: 'bigint')]
+    #[ORM\GeneratedValue(strategy: 'AUTO')]
+    protected ?int $id = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="robots_txt", type="text", nullable=true)
-     */
-    protected $robotsTxt;
+    #[ORM\Column(name: 'robots_txt', type: 'text', nullable: true)]
+    protected ?string $robotsTxt = null;
 
     /**
      * Return string representation of entity.
      *
      * @return string
      */
-    public function __toString()
+    public function __toString(): string
     {
         return 'hg_seo.admin.label.robots';
     }
@@ -42,7 +32,7 @@ class Robots
      *
      * @return int
      */
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -54,7 +44,7 @@ class Robots
      *
      * @return AbstractEntity
      */
-    public function setId($id)
+    public function setId(?int $id): self
     {
         $this->id = $id;
 
@@ -64,7 +54,7 @@ class Robots
     /**
      * @return string
      */
-    public function getRobotsTxt()
+    public function getRobotsTxt(): ?string
     {
         return $this->robotsTxt;
     }
@@ -72,7 +62,7 @@ class Robots
     /**
      * @param string $robotsTxt
      */
-    public function setRobotsTxt($robotsTxt)
+    public function setRobotsTxt(?string $robotsTxt): self
     {
         $this->robotsTxt = $robotsTxt;
     }
@@ -80,7 +70,7 @@ class Robots
     /**
      * @return string
      */
-    public function getDefaultAdminType()
+    public function getDefaultAdminType(): string
     {
         return RobotsType::class;
     }

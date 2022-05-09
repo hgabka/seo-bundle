@@ -26,7 +26,7 @@ class RobotsType extends AbstractType
     /**
      * @return string
      */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'hgabkaseobundle_settings_form_type';
     }

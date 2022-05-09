@@ -32,7 +32,7 @@ class CloneListener
         $this->cloneHelper = $cloneHelper;
     }
 
-    public function postDeepCloneAndSave(DeepCloneAndSaveEvent $event)
+    public function postDeepCloneAndSave(DeepCloneAndSaveEvent $event): void
     {
         $originalEntity = $event->getEntity();
 
