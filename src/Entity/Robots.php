@@ -65,6 +65,8 @@ class Robots
     public function setRobotsTxt(?string $robotsTxt): self
     {
         $this->robotsTxt = $robotsTxt;
+
+        return $this;
     }
 
     /**

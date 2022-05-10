@@ -11,14 +11,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RobotsController extends AbstractController
 {
-    /**
-     * Generates the robots.txt content when available in the database and falls back to normal robots.txt if exists.
-     *
-     * @Route(path="/robots.txt", name="HgabkaSeoBundle_robots", defaults={"_format": "txt"})
-     *
-     * @return array
-     */
-    public function indexAction(Request $request, ManagerRegistry $doctrine)
+    #[Route(
+        '/robots.txt',
+        name: 'HgabkaSeoBundle_robots',
+        defaults: ['_format' => 'txt']
+    )]
+    public function indexAction(Request $request, ManagerRegistry $doctrine): Response
     {
         $entity = $doctrine->getRepository(Robots::class)->findOneBy([]);
         $robots = $this->getParameter('robots_default');
