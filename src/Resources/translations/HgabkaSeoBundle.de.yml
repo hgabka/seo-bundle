@@ -1,0 +1,6 @@
+hg_seo:
+    group: SEO Einstellungen
+    admin:
+        label:
+            robots: 'Robots.txt Einstellung'
+            seo: SEO Einstellungen
