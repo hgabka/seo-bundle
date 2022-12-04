@@ -137,8 +137,8 @@ class SeoAdminController extends CRUDController
 
         if (!$isSaved) {
             $this->addFlash(
-                'sonata_flash_warning',
-                $this->translator->trans('seo.robots.warning')
+                'sonata_flash_info',
+                $this->translator->trans('hg_seo.seo.warning')
             );
         }
 
