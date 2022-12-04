@@ -13,10 +13,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class SeoAdminController extends CRUDController
 {
     /** @var ManagerRegistry */
-    protected $doctrine;
+    protected ManagerRegistry $doctrine;
 
     /** @var TranslatorInterface */
-    protected $translator;
+    protected TranslatorInterface $translator;
 
     #[Required]
     public function setDoctrine(ManagerRegistry $doctrine): self
