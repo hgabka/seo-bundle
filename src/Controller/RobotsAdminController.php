@@ -135,7 +135,7 @@ class RobotsAdminController extends CRUDController
 
         if (!$isSaved) {
             $this->addFlash(
-                'sonata_flash_warning',
+                'sonata_flash_info',
                 $this->translator->trans('hg_seo.robots.warning')
             );
         }
