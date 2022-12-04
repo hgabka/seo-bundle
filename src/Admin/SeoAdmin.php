@@ -84,7 +84,8 @@ class SeoAdmin extends AbstractAdmin
                 ->addModelTransformer(new CallbackTransformer(
                     function ($original) {
                         // string to array
-                        $array = explode(',', $original);
+                        $array = empty($original) ? [] : explode(',', $original);
+
                         // trim all the values
                         $array = array_map('trim', $array);
 
