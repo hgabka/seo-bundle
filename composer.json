@@ -14,7 +14,7 @@
     "require": {
         "php" : ">=8.0.2",
         "hgabka/utils-bundle": "^6.0",
-        "symfony/framework-bundle": "6.0.*",
+        "symfony/framework-bundle": "^6.0",
         "hgabka/media-bundle": "^6.0"
     },
     "autoload": {
