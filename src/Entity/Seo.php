@@ -551,7 +551,7 @@ class Seo
     /**
      * @return Media
      */
-    public function getTwitterImage(): ?string
+    public function getTwitterImage(): ?Media
     {
         return $this->twitterImage;
     }
