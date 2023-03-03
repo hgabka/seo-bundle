@@ -204,24 +204,12 @@ class Seo
         return 'hg_seo.admin.label.seo';
     }
 
-    /**
-     * Get id.
-     *
-     * @return int
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * Set id.
-     *
-     * @param int $id The unique identifier
-     *
-     * @return AbstractEntity
-     */
-    public function setId(?int $id): self
+    public function setId(?int $id): static
     {
         $this->id = $id;
 
@@ -233,7 +221,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setOgUrl(?string $url): self
+    public function setOgUrl(?string $url): static
     {
         $this->ogUrl = $url;
 
@@ -261,7 +249,7 @@ class Seo
      *
      * @return string
      */
-    public function setMetaTitle(?string $title): self
+    public function setMetaTitle(?string $title): static
     {
         $this->metaTitle = $title;
 
@@ -281,7 +269,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setMetaAuthor(?string $meta): self
+    public function setMetaAuthor(?string $meta): static
     {
         $this->metaAuthor = $meta;
 
@@ -301,7 +289,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setMetaDescription(?string $meta): self
+    public function setMetaDescription(?string $meta): static
     {
         $this->metaDescription = $meta;
 
@@ -321,7 +309,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setMetaRobots(?string $meta): self
+    public function setMetaRobots(?string $meta): static
     {
         $this->metaRobots = $meta;
 
@@ -341,7 +329,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setExtraMetadata(?string $extraMetadata): self
+    public function setExtraMetadata(?string $extraMetadata): static
     {
         $this->extraMetadata = $extraMetadata;
 
@@ -353,7 +341,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setOgDescription(?string $ogDescription): self
+    public function setOgDescription(?string $ogDescription): static
     {
         $this->ogDescription = $ogDescription;
 
@@ -373,7 +361,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setOgImage(?Media $ogImage = null): self
+    public function setOgImage(?Media $ogImage = null): static
     {
         $this->ogImage = $ogImage;
 
@@ -393,7 +381,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setOgTitle(?string $ogTitle): self
+    public function setOgTitle(?string $ogTitle): static
     {
         $this->ogTitle = $ogTitle;
 
@@ -413,7 +401,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setOgType(?string $ogType): self
+    public function setOgType(?string $ogType): static
     {
         $this->ogType = $ogType;
 
@@ -439,9 +427,11 @@ class Seo
     /**
      * @param mixed $ogArticleAuthor
      */
-    public function setOgArticleAuthor(?string $ogArticleAuthor): self
+    public function setOgArticleAuthor(?string $ogArticleAuthor): static
     {
         $this->ogArticleAuthor = $ogArticleAuthor;
+        
+        return $this;
     }
 
     /**
@@ -455,9 +445,11 @@ class Seo
     /**
      * @param mixed $ogArticlePublisher
      */
-    public function setOgArticlePublisher(?string $ogArticlePublisher): self
+    public function setOgArticlePublisher(?string $ogArticlePublisher): static
     {
         $this->ogArticlePublisher = $ogArticlePublisher;
+        
+        return $this;
     }
 
     /**
@@ -471,9 +463,11 @@ class Seo
     /**
      * @param mixed $ogArticleSection
      */
-    public function setOgArticleSection(?string $ogArticleSection): self
+    public function setOgArticleSection(?string $ogArticleSection): static
     {
         $this->ogArticleSection = $ogArticleSection;
+        
+        return $this;
     }
 
     /**
@@ -487,7 +481,7 @@ class Seo
     /**
      * @param string $twitterTitle
      */
-    public function setTwitterTitle(?string $twitterTitle): self
+    public function setTwitterTitle(?string $twitterTitle): static
     {
         $this->twitterTitle = $twitterTitle;
 
@@ -505,7 +499,7 @@ class Seo
     /**
      * @param string $twitterDescription
      */
-    public function setTwitterDescription(?string $twitterDescription): self
+    public function setTwitterDescription(?string $twitterDescription): static
     {
         $this->twitterDescription = $twitterDescription;
 
@@ -523,7 +517,7 @@ class Seo
     /**
      * @param string $twitterSite
      */
-    public function setTwitterSite(?string $twitterSite): self
+    public function setTwitterSite(?string $twitterSite): static
     {
         $this->twitterSite = $twitterSite;
 
@@ -541,7 +535,7 @@ class Seo
     /**
      * @param string $twitterCreator
      */
-    public function setTwitterCreator(?string $twitterCreator): self
+    public function setTwitterCreator(?string $twitterCreator): static
     {
         $this->twitterCreator = $twitterCreator;
 
@@ -559,7 +553,7 @@ class Seo
     /**
      * @param Media $twitterImage
      */
-    public function setTwitterImage(?Media $twitterImage): self
+    public function setTwitterImage(?Media $twitterImage): static
     {
         $this->twitterImage = $twitterImage;
 
@@ -591,7 +585,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setRef(EntityInterface $entity = null): self
+    public function setRef(EntityInterface $entity = null): static
     {
         $this->setRefId($entity ? $entity->getId() : null);
         $this->setRefEntityName($entity ? ClassLookup::getClass($entity) : null);
