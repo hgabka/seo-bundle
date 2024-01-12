@@ -25,13 +25,13 @@ class HgabkaSeoExtension extends Extension implements PrependExtensionInterface
         $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $loader->load('services.yml');
-        $loader->load('parameters.yml');
+        $loader->load('services.yaml');
+        $loader->load('parameters.yaml');
     }
 
     public function prepend(ContainerBuilder $container): void
     {
-        $liipConfig = Yaml::parse(file_get_contents(__DIR__ . '/../Resources/config/imagine_filters.yml'));
+        $liipConfig = Yaml::parse(file_get_contents(__DIR__ . '/../Resources/config/imagine_filters.yaml'));
         $container->prependExtensionConfig('liip_imagine', $liipConfig['liip_imagine']);
 
         $configs = $container->getExtensionConfig($this->getAlias());
