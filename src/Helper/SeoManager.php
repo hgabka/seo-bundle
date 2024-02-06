@@ -194,6 +194,20 @@ class SeoManager
             $propertyAccessor->setValue($seo1, $property, $seo2Value);
         }
 
+        $image1 = $seo1->getOgImage();
+        $image2 = $seo2->getOgImage();
+
+        if (empty($image1) && !empty($image2)) {
+            $seo1->setOgImage($image2);
+        }
+
+        $image1 = $seo1->getTwitterImage();
+        $image2 = $seo2->getTwitterImage();
+
+        if (empty($image1) && !empty($image2)) {
+            $seo1->setTwitterImage($image2);
+        }
+
         return $seo1;
     }
 
