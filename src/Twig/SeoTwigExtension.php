@@ -39,7 +39,7 @@ class SeoTwigExtension extends AbstractExtension
         return [
             new TwigFunction('render_seo_metadata_for', $this->renderSeoMetadataFor(...), ['is_safe' => ['html'], 'needs_environment' => true]),
             new TwigFunction('render_general_seo_metadata', $this->renderGeneralSeoMetadata(...), ['is_safe' => ['html'], 'needs_environment' => true]),
-            new TwigFunction('get_seo_for', $this->getSeoFor(...)),
+            new TwigFunction('get_seo_for', $this->seoManager->getSeoFor(...)),
             new TwigFunction('get_title', $this->getTitle(...)),
             new TwigFunction('get_title_for', $this->getTitleFor(...)),
             new TwigFunction('get_title_for_page_or_default', $this->getTitleForPageOrDefault(...)),
