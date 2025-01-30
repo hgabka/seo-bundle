@@ -37,14 +37,14 @@ class SeoTwigExtension extends AbstractExtension
     public function getFunctions()
     {
         return [
-            new TwigFunction('render_seo_metadata_for', [$this, 'renderSeoMetadataFor'], ['is_safe' => ['html'], 'needs_environment' => true]),
-            new TwigFunction('render_general_seo_metadata', [$this, 'renderGeneralSeoMetadata'], ['is_safe' => ['html'], 'needs_environment' => true]),
-            new TwigFunction('get_seo_for', [$this, 'getSeoFor']),
-            new TwigFunction('get_title', [$this, 'getTitle']),
-            new TwigFunction('get_title_for', [$this, 'getTitleFor']),
-            new TwigFunction('get_title_for_page_or_default', [$this, 'getTitleForPageOrDefault']),
-            new TwigFunction('get_absolute_url', [$this, 'getAbsoluteUrl']),
-            new TwigFunction('get_image_dimensions', [$this, 'getImageDimensions']),
+            new TwigFunction('render_seo_metadata_for', $this->renderSeoMetadataFor(...), ['is_safe' => ['html'], 'needs_environment' => true]),
+            new TwigFunction('render_general_seo_metadata', $this->renderGeneralSeoMetadata(...), ['is_safe' => ['html'], 'needs_environment' => true]),
+            new TwigFunction('get_seo_for', $this->getSeoFor(...)),
+            new TwigFunction('get_title', $this->getTitle(...)),
+            new TwigFunction('get_title_for', $this->getTitleFor(...)),
+            new TwigFunction('get_title_for_page_or_default', $this->getTitleForPageOrDefault(...)),
+            new TwigFunction('get_absolute_url', $this->getAbsoluteUrl(...)),
+            new TwigFunction('get_image_dimensions', $this->getImageDimensions(...)),
         ];
     }
 
@@ -143,7 +143,7 @@ class SeoTwigExtension extends AbstractExtension
      *
      * @return string
      */
-    public function getTitleForPageOrDefault(AbstractPage $entity = null, $default = null)
+    public function getTitleForPageOrDefault(?AbstractPage $entity = null, $default = null)
     {
         return $this->seoManager->getTitleForPageOrDefault($entity, $default);
     }
