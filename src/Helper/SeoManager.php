@@ -117,7 +117,7 @@ class SeoManager
      *
      * @return string
      */
-    public function getTitleForPageOrDefault(AbstractPage $entity = null, $default = null)
+    public function getTitleForPageOrDefault(?AbstractPage $entity = null, $default = null)
     {
         if (null === $entity) {
             return $default;
@@ -243,7 +243,7 @@ class SeoManager
      *
      * @return null|string
      */
-    private function getSeoTitle(AbstractPage $entity = null)
+    private function getSeoTitle(?AbstractPage $entity = null)
     {
         $seo = $entity ? $this->getSeoFor($entity) : $this->getGeneralSeo();
         if (null !== $seo) {
