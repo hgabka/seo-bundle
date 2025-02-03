@@ -481,7 +481,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setRef(EntityInterface $entity = null): static
+    public function setRef(?EntityInterface $entity = null): static
     {
         $this->setRefId($entity ? $entity->getId() : null);
         $this->setRefEntityName($entity ? ClassLookup::getClass($entity) : null);
