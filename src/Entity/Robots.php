@@ -10,7 +10,7 @@ use Hgabka\SeoBundle\Form\RobotsType;
 class Robots
 {
     #[ORM\Id]
-    #[ORM\Column(type: 'bigint')]
+    #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     protected ?int $id = null;
 

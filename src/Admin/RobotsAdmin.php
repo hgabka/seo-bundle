@@ -8,7 +8,10 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class RobotsAdmin extends AbstractAdmin
 {
-    protected $baseRoutePattern = 'robots';
+    public function generateBaseRoutePattern(bool $isChildAdmin = false): string
+    {
+        return 'robots';
+    }
 
     /**
      * Get the list of actions that can be accessed directly from the dashboard.

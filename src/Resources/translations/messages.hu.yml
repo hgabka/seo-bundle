@@ -22,7 +22,8 @@ hg_seo:
         tip: "Tip:"
         warning: Ez csak egy alapértelmezett érték és példa, nincsen robots.txt feltöltve
         moreinfo: További információk
-
+    seo:
+        warning: Nincs SEO rekord feltöltve
     action:
         save: Mentés
         cancel: Mégse

@@ -24,204 +24,86 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\ChangeTrackingPolicy('DEFERRED_EXPLICIT')]
 class Seo
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="bigint")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
     #[ORM\Id]
-    #[ORM\Column(type: 'bigint')]
+    #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue(strategy: 'AUTO')]
     protected ?int $id = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="meta_title", type="string", nullable=true)
-     * @Assert\Length(max=65)
-     */
     #[ORM\Column(name: 'meta_title', type: 'string', nullable: true)]
     #[Assert\Length(max: 65)]
     protected ?string $metaTitle = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="meta_description", type="text", nullable=true)
-     * @Assert\Length(max=155)
-     */
     #[ORM\Column(name: 'meta_description', type: 'text', nullable: true)]
     #[Assert\Length(max: 155)]
     protected ?string $metaDescription = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="meta_author", type="string", nullable=true)
-     */
     #[ORM\Column(name: 'meta_author', type: 'string', nullable: true)]
     protected ?string $metaAuthor = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="meta_robots", type="string", nullable=true)
-     */
     #[ORM\Column(name: 'meta_robots', type: 'string', nullable: true)]
     protected ?string $metaRobots = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="og_type", type="string", nullable=true)
-     */
     #[ORM\Column(name: 'og_type', type: 'string', nullable: true)]
     protected ?string $ogType = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="og_title", type="string", nullable=true)
-     */
     #[ORM\Column(name: 'og_title', type: 'string', nullable: true)]
     protected ?string $ogTitle = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="og_description", type="text", nullable=true)
-     */
     #[ORM\Column(name: 'og_description', type: 'text', nullable: true)]
     protected ?string $ogDescription = null;
 
-    /**
-     * @var Media
-     *
-     * @ORM\ManyToOne(targetEntity="Hgabka\MediaBundle\Entity\Media")
-     * @ORM\JoinColumn(name="og_image_id", referencedColumnName="id")
-     */
     #[ORM\ManyToOne(targetEntity: Media::class)]
     #[ORM\JoinColumn(name: 'og_image_id', referencedColumnName: 'id')]
     protected ?Media $ogImage = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="extra_metadata", type="text", nullable=true)
-     */
     #[ORM\Column(name: 'extra_metadata', type: 'text', nullable: true)]
     protected ?string $extraMetadata = null;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(type="bigint", name="ref_id", nullable=true)
-     */
-    #[ORM\Column(name: 'ref_id', type: 'bigint', nullable: true)]
+    #[ORM\Column(name: 'ref_id', type: 'integer', nullable: true)]
     protected ?int $refId = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="string", name="ref_entity_name", nullable=true)
-     */
     #[ORM\Column(name: 'ref_entity_name', type: 'string', nullable: true)]
     protected ?string $refEntityName = null;
 
-    /**
-     * @ORM\Column(type="string", nullable=true, name="og_url")
-     */
     #[ORM\Column(name: 'og_url', type: 'string', nullable: true)]
     protected ?string $ogUrl = null;
 
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true, name="og_article_author")
-     */
     #[ORM\Column(name: 'og_article_author', type: 'string', length: 100, nullable: true)]
     protected ?string $ogArticleAuthor = null;
 
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true, name="og_article_publisher")
-     */
     #[ORM\Column(name: 'og_article_publisher', type: 'string', length: 100, nullable: true)]
     protected ?string $ogArticlePublisher = null;
 
-    /**
-     * @ORM\Column(type="string", length=100, nullable=true, name="og_article_section")
-     */
     #[ORM\Column(name: 'og_article_section', type: 'string', length: 100, nullable: true)]
     protected ?string $ogArticleSection = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="twitter_title", type="string", length=255, nullable=true)
-     */
     #[ORM\Column(name: 'twitter_title', type: 'string', length: 255, nullable: true)]
     protected ?string $twitterTitle = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="twitter_description", type="text", nullable=true)
-     */
     #[ORM\Column(name: 'twitter_description', type: 'text', nullable: true)]
     protected ?string $twitterDescription = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="twitter_site", type="string", length=255, nullable=true)
-     */
     #[ORM\Column(name: 'twitter_site', type: 'string', length: 255, nullable: true)]
     protected ?string $twitterSite = null;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="twitter_creator", type="string", length=255, nullable=true)
-     */
     #[ORM\Column(name: 'twitter_creator', type: 'string', length: 255, nullable: true)]
     protected ?string $twitterCreator = null;
 
-    /**
-     * @var Media
-     *
-     * @ORM\ManyToOne(targetEntity="Hgabka\MediaBundle\Entity\Media")
-     * @ORM\JoinColumn(name="twitter_image_id", referencedColumnName="id")
-     */
     #[ORM\ManyToOne(targetEntity: Media::class)]
     #[ORM\JoinColumn(name: 'twitter_image_id', referencedColumnName: 'id')]
     protected ?Media $twitterImage = null;
 
-    /**
-     * Return string representation of entity.
-     *
-     * @return string
-     */
     public function __toString(): string
     {
         return 'hg_seo.admin.label.seo';
     }
 
-    /**
-     * Get id.
-     *
-     * @return int
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * Set id.
-     *
-     * @param int $id The unique identifier
-     *
-     * @return AbstractEntity
-     */
-    public function setId(?int $id): self
+    public function setId(?int $id): static
     {
         $this->id = $id;
 
@@ -233,7 +115,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setOgUrl(?string $url): self
+    public function setOgUrl(?string $url): static
     {
         $this->ogUrl = $url;
 
@@ -261,7 +143,7 @@ class Seo
      *
      * @return string
      */
-    public function setMetaTitle(?string $title): self
+    public function setMetaTitle(?string $title): static
     {
         $this->metaTitle = $title;
 
@@ -281,7 +163,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setMetaAuthor(?string $meta): self
+    public function setMetaAuthor(?string $meta): static
     {
         $this->metaAuthor = $meta;
 
@@ -301,7 +183,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setMetaDescription(?string $meta): self
+    public function setMetaDescription(?string $meta): static
     {
         $this->metaDescription = $meta;
 
@@ -321,7 +203,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setMetaRobots(?string $meta): self
+    public function setMetaRobots(?string $meta): static
     {
         $this->metaRobots = $meta;
 
@@ -341,7 +223,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setExtraMetadata(?string $extraMetadata): self
+    public function setExtraMetadata(?string $extraMetadata): static
     {
         $this->extraMetadata = $extraMetadata;
 
@@ -353,7 +235,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setOgDescription(?string $ogDescription): self
+    public function setOgDescription(?string $ogDescription): static
     {
         $this->ogDescription = $ogDescription;
 
@@ -373,7 +255,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setOgImage(?Media $ogImage = null): self
+    public function setOgImage(?Media $ogImage = null): static
     {
         $this->ogImage = $ogImage;
 
@@ -393,7 +275,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setOgTitle(?string $ogTitle): self
+    public function setOgTitle(?string $ogTitle): static
     {
         $this->ogTitle = $ogTitle;
 
@@ -413,7 +295,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setOgType(?string $ogType): self
+    public function setOgType(?string $ogType): static
     {
         $this->ogType = $ogType;
 
@@ -439,9 +321,11 @@ class Seo
     /**
      * @param mixed $ogArticleAuthor
      */
-    public function setOgArticleAuthor(?string $ogArticleAuthor): self
+    public function setOgArticleAuthor(?string $ogArticleAuthor): static
     {
         $this->ogArticleAuthor = $ogArticleAuthor;
+
+        return $this;
     }
 
     /**
@@ -455,9 +339,11 @@ class Seo
     /**
      * @param mixed $ogArticlePublisher
      */
-    public function setOgArticlePublisher(?string $ogArticlePublisher): self
+    public function setOgArticlePublisher(?string $ogArticlePublisher): static
     {
         $this->ogArticlePublisher = $ogArticlePublisher;
+
+        return $this;
     }
 
     /**
@@ -471,9 +357,11 @@ class Seo
     /**
      * @param mixed $ogArticleSection
      */
-    public function setOgArticleSection(?string $ogArticleSection): self
+    public function setOgArticleSection(?string $ogArticleSection): static
     {
         $this->ogArticleSection = $ogArticleSection;
+
+        return $this;
     }
 
     /**
@@ -487,7 +375,7 @@ class Seo
     /**
      * @param string $twitterTitle
      */
-    public function setTwitterTitle(?string $twitterTitle): self
+    public function setTwitterTitle(?string $twitterTitle): static
     {
         $this->twitterTitle = $twitterTitle;
 
@@ -505,7 +393,7 @@ class Seo
     /**
      * @param string $twitterDescription
      */
-    public function setTwitterDescription(?string $twitterDescription): self
+    public function setTwitterDescription(?string $twitterDescription): static
     {
         $this->twitterDescription = $twitterDescription;
 
@@ -523,7 +411,7 @@ class Seo
     /**
      * @param string $twitterSite
      */
-    public function setTwitterSite(?string $twitterSite): self
+    public function setTwitterSite(?string $twitterSite): static
     {
         $this->twitterSite = $twitterSite;
 
@@ -541,7 +429,7 @@ class Seo
     /**
      * @param string $twitterCreator
      */
-    public function setTwitterCreator(?string $twitterCreator): self
+    public function setTwitterCreator(?string $twitterCreator): static
     {
         $this->twitterCreator = $twitterCreator;
 
@@ -551,7 +439,7 @@ class Seo
     /**
      * @return Media
      */
-    public function getTwitterImage(): ?string
+    public function getTwitterImage(): ?Media
     {
         return $this->twitterImage;
     }
@@ -559,7 +447,7 @@ class Seo
     /**
      * @param Media $twitterImage
      */
-    public function setTwitterImage(?Media $twitterImage): self
+    public function setTwitterImage(?Media $twitterImage): static
     {
         $this->twitterImage = $twitterImage;
 
@@ -591,7 +479,7 @@ class Seo
      *
      * @return Seo
      */
-    public function setRef(EntityInterface $entity = null): self
+    public function setRef(EntityInterface $entity = null): static
     {
         $this->setRefId($entity ? $entity->getId() : null);
         $this->setRefEntityName($entity ? ClassLookup::getClass($entity) : null);

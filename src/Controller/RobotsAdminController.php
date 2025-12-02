@@ -4,7 +4,6 @@ namespace Hgabka\SeoBundle\Controller;
 
 use Doctrine\Persistence\ManagerRegistry;
 use Hgabka\SeoBundle\Entity\Robots;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sonata\AdminBundle\Controller\CRUDController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,11 +12,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class RobotsAdminController extends CRUDController
 {
-    /** @var ManagerRegistry */
-    protected $doctrine;
+    protected ManagerRegistry $doctrine;
 
-    /** @var TranslatorInterface */
-    protected $translator;
+    protected TranslatorInterface $translator;
 
     #[Required]
     public function setDoctrine(ManagerRegistry $doctrine): self
@@ -138,8 +135,8 @@ class RobotsAdminController extends CRUDController
 
         if (!$isSaved) {
             $this->addFlash(
-                'sonata_flash_warning',
-                $this->translator->trans('seo.robots.warning')
+                'sonata_flash_info',
+                $this->translator->trans('hg_seo.robots.warning')
             );
         }
 

@@ -14,7 +14,10 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class SeoAdmin extends AbstractAdmin
 {
-    protected $baseRoutePattern = 'seo';
+    public function generateBaseRoutePattern(bool $isChildAdmin = false): string
+    {
+        return 'seo';
+    }
 
     /**
      * Get the list of actions that can be accessed directly from the dashboard.
@@ -81,7 +84,8 @@ class SeoAdmin extends AbstractAdmin
                 ->addModelTransformer(new CallbackTransformer(
                     function ($original) {
                         // string to array
-                        $array = explode(',', $original);
+                        $array = empty($original) ? [] : explode(',', $original);
+
                         // trim all the values
                         $array = array_map('trim', $array);
 
