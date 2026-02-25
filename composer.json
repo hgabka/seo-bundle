@@ -13,9 +13,9 @@
     ],
     "require": {
         "php" : "^8.2",
-        "hgabka/utils-bundle": "^7.0",
+        "hgabka/utils-bundle": "^7.1",
         "symfony/framework-bundle": "^7.0",
-        "hgabka/media-bundle": "^7.0"
+        "hgabka/media-bundle": "^7.1"
     },
     "autoload": {
         "psr-4": { "Hgabka\\SeoBundle\\": "src" }
