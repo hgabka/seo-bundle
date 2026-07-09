@@ -2,7 +2,7 @@
 
 namespace Hgabka\SeoBundle\Admin\Menu;
 
-use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ManagerRegistry;
 use Hgabka\SeoBundle\Admin\RobotsAdmin;
 use Hgabka\SeoBundle\Admin\SeoAdmin;
 use Sonata\AdminBundle\Event\ConfigureMenuEvent;
