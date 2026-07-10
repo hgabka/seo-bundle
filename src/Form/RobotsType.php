@@ -13,7 +13,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class RobotsType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('robotsTxt', TextareaType::class, [
             'label' => 'robots.txt',
@@ -31,7 +31,7 @@ class RobotsType extends AbstractType
         return 'hgabkaseobundle_settings_form_type';
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Robots::class,

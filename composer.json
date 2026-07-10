@@ -2,7 +2,13 @@
     "name": "hgabka/seo-bundle",
     "type": "Symfony bundle",
     "description": "Annotating content with metadata for social sharing and seo purposes cannot be overlooked nowadays. The HgabkaSeoBundle contains default editing functionality for OpenGraph data, meta descriptions, keywords and titles and Metriweb tags. Because the metatagging and tracking options are always changing, a free field to add custom header information is provided as well.",
-    "keywords": [ "hgabka", "seo", "cms", "opengraph", "meta"],
+    "keywords": [
+        "hgabka",
+        "seo",
+        "cms",
+        "opengraph",
+        "meta"
+    ],
     "homepage": "https://github.com/hgabka/seo-bundle",
     "license": "proprietary",
     "authors": [
@@ -12,17 +18,20 @@
         }
     ],
     "require": {
-        "php" : "^8.2",
-        "hgabka/utils-bundle": "^7.1",
-        "symfony/framework-bundle": "^7.0",
-        "hgabka/media-bundle": "^7.1"
+        "php": "^8.2",
+        "hgabka/utils-bundle": "^7.1|^8.0",
+        "symfony/framework-bundle": "^7.0|^8.0",
+        "hgabka/media-bundle": "^7.1|^8.0"
     },
     "autoload": {
-        "psr-4": { "Hgabka\\SeoBundle\\": "src" }
+        "psr-4": {
+            "Hgabka\\SeoBundle\\": "src"
+        }
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "1.0-dev",
+            "dev-v8": "8.0.x-dev"
         }
     }
 }

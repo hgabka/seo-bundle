@@ -20,7 +20,7 @@ class SeoType extends AbstractType
     public const ROBOTS_NOTRANSLATE = 'notranslate';
     public const ROBOTS_NOIMAGEINDEX = 'noimageindex';
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder->add('id', HiddenType::class)
             ->add('metaTitle', null, [
@@ -61,7 +61,7 @@ class SeoType extends AbstractType
             ->addModelTransformer(new CallbackTransformer(
                 function ($original) {
                     // string to array
-                    $array = explode(',', $original);
+                    $array = explode(',', $original ?? '');
                     // trim all the values
                     $array = array_map('trim', $array);
 
@@ -90,7 +90,7 @@ class SeoType extends AbstractType
         return 'seo';
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
                 'data_class' => Seo::class,
