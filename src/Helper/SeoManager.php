@@ -172,20 +172,25 @@ class SeoManager
      */
     public function getImageDimensions($src): ?array
     {
+        // Same-host URLs are always expected to resolve to a local file (they come from asset()).
+        // If the file is missing on disk (e.g. the source media is gone), never fall through to
+        // getimagesize() with the original URL: that would issue a synchronous HTTP request back
+        // into this very application, which can exhaust the webserver's worker pool under load.
         if (0 === strpos($src, $this->hgabkaUtils->getSchemeAndHttpHost())) {
             $file = str_replace($this->hgabkaUtils->getSchemeAndHttpHost(), $this->projectDir . '/public', $src);
-            if (is_file($file)) {
-                $src = $file;
+            if (!is_file($file)) {
+                return null;
             }
+            $src = $file;
         }
 
-        try {
-            [$width, $height] = getimagesize($src);
-        } catch (\Exception $e) {
+        $dimensions = @getimagesize($src);
+
+        if (false === $dimensions) {
             return null;
         }
 
-        return ['width' => $width, 'height' => $height];
+        return ['width' => $dimensions[0], 'height' => $dimensions[1]];
     }
 
     /**
