@@ -70,6 +70,13 @@ class OrderTest extends TestCase
         $this->assertSame(1.0, $prepared->orderItems['B']->getQuantity());
     }
 
+    public function testConverterCopesWithAnOrderWithoutShippingAndItems(): void
+    {
+        $converted = (new OrderConverter())->convert(new Order());
+
+        $this->assertSame(['0.00', '0.00', '0.00', []], [$converted['total'], $converted['taxes_total'], $converted['shipping_total'], $converted['order_items']]);
+    }
+
     public function testConverterFormatsNumbersWithTwoDecimals(): void
     {
         $order = (new Order())->setTransactionID('T1')->setStoreName('Shop')->setShippingTotal(5)->setCity('Budapest')->setCountry('HU');

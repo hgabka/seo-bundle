@@ -58,7 +58,7 @@ class GoogleAnalyticsTwigExtension extends AbstractExtension
      */
     public function setOrderPreparer($preparer)
     {
-        $this->orderConverter = $preparer;
+        $this->orderPreparer = $preparer;
     }
 
     /**
