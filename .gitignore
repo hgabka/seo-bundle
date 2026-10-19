@@ -6,3 +6,4 @@ vendor
 *.orig
 build
 /.phpunit.cache
+/.phpunit.result.cache
