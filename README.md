@@ -1,130 +1,98 @@
-# HgabkaSeoBundle 
+# hgabka/seo-bundle
 
+SEO és közösségi megosztási metaadatok kezelése oldalakhoz: meta title/description/robots, OpenGraph és Twitter Card adatok, egyedi fejléc-tartalom, szerkeszthető `robots.txt`, valamint Google Analytics segédek (inicializálás, e-commerce követés). A `hgabka/node-bundle` oldalszerkesztőjébe egy SEO fülként illeszkedik. A Kunstmaan SeoBundle alapján készült.
 
-Annotating content with metadata for social sharing and seo purposes cannot be overlooked nowadays. The HgabkaSeoBundle contains default editing functionality for OpenGraph data, meta descriptions, keywords and titles and Metriweb tags. Because the metatagging and tracking options are always changing, a free field to add custom header information is provided as well.
+## Telepítés
 
-
-## Installation
-
-This bundle is compatible with all Symfony 3.* releases.
-
-## Symfony 2.2
-
-If you want to use this bundle for a Symfony 2.2 release, use the 2.2 branch.
-
-## Usage
-
-### Metadata
-
-In your template define the following to import all SEO metadata.
-This SEO metadata is set in the SEO tab for your page in the backend.
-
-```TWIG
-    {% if page is defined %}
-        {{ render_seo_metadata_for(page) }}
-    {% endif %}
+```bash
+composer require hgabka/seo-bundle
 ```
 
-For the title there are several options.
-There are several twig functions which return a title based on which is found first.
-If they are all null or empty it'll return an empty string.
+```php
+// config/bundles.php
+Hgabka\SeoBundle\HgabkaSeoBundle::class => ['all' => true],
+```
 
-The ```get_title_for``` twig function used the following order:
-* SEO title
-* Page title
-If nothing is set it'll return an empty string.
+A `robots.txt` kiszolgálásához a `RobotsController` attribútum-route-jait be kell tölteni:
 
-Another option is ```get_title_for_page_or_default```. This twig function accepts a default string that is used as a fallback.
-* SEO title
-* default string
-* Page title
+```yaml
+# config/routes.yaml
+HgabkaSeoBundle_robots:
+    resource: '@HgabkaSeoBundle/Controller/RobotsController.php'
+    type: attribute
+```
 
-You can also access the raw SEO object through the ```get_seo_for``` function.
+Követelmények: PHP ^8.2, Symfony 7/8. Függőségek: `hgabka/utils-bundle`, `hgabka/media-bundle` (OG/Twitter kép), Sonata Admin, LiipImagine (a bundle `prepend`-del hozzáadja a saját szűrőit: `Resources/config/imagine_filters.yaml`). Táblák: `hg_seo_seo`, `hg_seo_robots`.
 
-### Social Widgets
+## Konfiguráció
 
-And finally the SEO bundle is also capable of generating 'social widgets' such as a facebook like button.
-For now only facebook like & linkedin product are supported.
+A bundle (`hgabka_seo`) saját konfigurációs fát nem definiál; a viselkedést paraméterek szabályozzák:
 
-Use the ```get_social_widget_for``` function. Example: ```get_social_widget_for(page, 'linkedin')```.
+```yaml
+parameters:
+    google.analytics.account_id: 'UA-XXXXX-1'   # Google Analytics fiók (alapból üres)
+    robots_default: "User-agent: *"             # a robots.txt alapértelmezett tartalma
+    websitetitle: My site                       # kötelező: a weboldal címe (SeoManager)
+```
 
-You can override the views for all the functions that generate HTML output.
+A `SeoManager` a `websitetitle` konténer-paramétert (a weboldal címe) és a `kernel.project_dir`-t kapja – a `websitetitle` paramétert a projektben definiálni kell.
 
+## Használat
+
+### Entitás és admin
+
+- `Entity\Seo` (`hg_seo_seo`) – oldalhoz (`ref_id` + `ref_entity_name`) kapcsolt rekord: `meta_title`, `meta_description`, `meta_author`, `meta_robots`, `og_*` (type, title, description, url, image, article author/publisher/section), `twitter_*` (title, description, site, creator, image), `extra_metadata` (szabad fejléc-HTML).
+- `Entity\Robots` (`hg_seo_robots`) – a `robots.txt` szerkeszthető tartalma.
+- Az `EventListener\NodeListener` a node-bundle oldalszerkesztő űrlapjára (`hgabka_node.adaptForm`) felteszi a SEO fület (`Form\SeoType`, `SocialType`); a `CloneListener` oldal-klónozáskor a SEO adatot is másolja.
+- `Admin\SeoAdmin`, `Admin\RobotsAdmin` + menüpont (`Helper\Menu\SeoManagementMenuAdaptor`, `Admin\Menu\AdminMenuListener`); a robots.txt a `ROLE_SUPER_ADMIN` számára szerkeszthető (`HgabkaSeoBundle_settings_robots`).
+
+### robots.txt
+
+A `/robots.txt` útvonal sorrendben: az adatbázisban (`Robots`) tárolt tartalmat, majd a `robots.txt` fájlt, végül a `robots_default` paramétert adja vissza.
+
+### Twig
+
+A layout `<head>` részében:
+
+```twig
+{% if page is defined %}
+    {{ render_seo_metadata_for(page) }}
+{% endif %}
+{{ render_general_seo_metadata() }}   {# az oldalfüggetlen alap SEO adatok #}
+```
+
+A cím meghatározása:
+
+| Függvény | Sorrend |
+|---|---|
+| `get_title_for(page)` | SEO title → oldal címe → üres string |
+| `get_title_for_page_or_default(page, 'Alap cím')` | SEO title → megadott alapérték → oldal címe |
+| `get_title()` | az általános (weboldal) cím |
+
+További függvények: `get_seo_for(page)` (a nyers `Seo` objektum), `get_absolute_url(url)`, `get_image_dimensions(src)`.
+
+A kimenet a `Resources/views/SeoTwigExtension/metadata.html.twig` sablonnal módosítható (felülírható a projekt `templates/bundles/HgabkaSeoBundle/` mappájában).
 
 ### Google Analytics
 
-Added to the SEO bundle are a few helpers to control Google Analytics.
+A `google_analytics_initialize` és `google_analytics_track_order` Twig függvények a `analytics.js`-re (jQuery-függő; a bundle `Resources/public/js/analytics.js`) támaszkodnak.
 
-These helpers rely on the inclusion of the analytics.js file that's provided in this bundle.
-The script itself relies on jQuery to be present.
-
-```TWIG
-    {% javascripts
-        'vendor/jquery/jquery.js'
-        '@HgabkaSeoBundle/Resources/public/js/analytics.js'
-        output='frontend/footer.js'
-    %}
-        <script src='{{ asset_url }}'></script>
-    {% endjavascripts %}
+```twig
+{{ google_analytics_initialize() }}                                  {# a google.analytics.account_id paraméterrel #}
+{{ google_analytics_initialize({'account_id': 'UA-XXXXX-1'}) }}      {# vagy explicit fiókkal #}
 ```
 
-First up is ```google_analytics_initialize``` which looks for the Google Analytics Account ID in your config.
+Debug módban a script nem tölt be, csak a konzolra írja a kéréseket. Automatikusan követi a letöltéseket, külső linkeket, email linkeket és a gombkattintásokat; a közösségi események követéséhez az SDK-k betöltése után hívd meg: `googleAnalyticsApi.trackSocial('optional pageurl', 'optional trackername')`.
 
-```YAML
-    parameters:
-        google.analytics.account_id: 'UA-XXXXX-1'
+E-commerce követés: állíts össze egy `Helper\Order` objektumot `Helper\OrderItem` tételekkel, add át a sablonnak, majd:
+
+```php
+$order = (new Order())->setShippingTotal(5)->setTransactionID('ORD2013-00231');
+$order->orderItems[] = (new OrderItem())
+    ->setName('ACME 3000 Starter Kit')->setQuantity(20)->setUnitPrice(13.5)
+    ->setTaxes((20 * 13.5) * 0.21)->setCategoryorVariation('World Domination')->setSKU('ACM300-SK');
 ```
 
-You can also optionally pass the ```account_id``` as an argument to the function.
-```TWIG
-    {{ google_analytics_initialize({'account_id': 'UA-XXXXX-1'}) }}
-```
-
-This script will set up a queue with commands (_gaq) and the Google Analytics script itself (_ga).
-When Twig is in debug mode it'll not initialize the script but instead it'll just dump all requests to the console.
-This way you can easily monitor what Google Analytics is planning on doing in your production environment.
-
-The script will automatically track downloads, external links, links to email addresses & button clicks.
-
-Finally, we've also provided a JavaScript function
-which you'll have to call manually once the Twitter/Facebook SDK's have been loaded.
-This will then bind a callback via the SDKs which will log the events.
-
-```JavaScript
-    googleAnalyticsApi.trackSocial('optional pageurl', 'optional trackername')
-```
-
-
-We've also added a helper for e-commerce tracking. You have to set up an ```Order``` object with its ```OrderItem```s
-and pass it along to the ```google_analytics_track_order``` twig function. This will output the correctly formatted syntax for Google Analytics.
-
-```PHP
-    public function service(ContainerInterface $container, Request $request, RenderContext $renderContext)
-    {
-        $order = (new Order())
-            ->setShippingTotal(5)
-            ->setTransactionID('ORD2013-00231');
-
-        $order->orderItems[] = (new OrderItem())
-            ->setName('ACME 3000 Starter Kit')
-            ->setQuantity(20)
-            ->setUnitPrice(13.5)
-            ->setTaxes((20 * 13.5) * 0.21)
-            ->setCategoryorVariation('World Domination')
-            ->setSKU('ACM300-SK');
-
-        $order->orderItems[] = (new OrderItem())
-            ->setName('Super Duper Kit')
-            ->setQuantity(1)
-            ->setUnitPrice(3000)
-            ->setTaxes((3000) * 0.21)
-            ->setCategoryorVariation('Fun')
-            ->setSKU('SDK-3000');
-
-        $renderContext['order'] = $order;
-    }
-```
-
-```TWIG
-    {{ google_analytics_track_order(order) }}
+```twig
+{{ google_analytics_track_order(order) }}
 ```
