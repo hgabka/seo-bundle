@@ -5,3 +5,4 @@ composer.phar
 vendor
 *.orig
 build
+/.phpunit.cache
