@@ -24,6 +24,22 @@ HgabkaSeoBundle_robots:
 
 Követelmények: PHP ^8.2, Symfony 7/8. Függőségek: `hgabka/utils-bundle`, `hgabka/media-bundle` (OG/Twitter kép), Sonata Admin, LiipImagine (a bundle `prepend`-del hozzáadja a saját szűrőit: `Resources/config/imagine_filters.yaml`). Táblák: `hg_seo_seo`, `hg_seo_robots`.
 
+### Repók
+
+A hgabka csomagok nem szerepelnek a Packagiten, ezért a projekt `composer.json`-jában fel kell venni a repóikat (a függőségek saját `repositories` mezőjét a Composer nem olvassa). A repók nyilvánosak, az `https` url-ekhez nem kell SSH kulcs. Aki GitHub SSH kulccsal dolgozik, használhatja a `git@github.com:hgabka/<név>.git` url-eket is. Kulcs nélkül az anonim GitHub API kérés-limit (60/óra) miatt a Composer előbb-utóbb tokent kérhet.
+
+```json
+"repositories": [
+    {"type": "vcs", "url": "https://github.com/hgabka/utils-bundle.git"},
+    {"type": "vcs", "url": "https://github.com/hgabka/doctrine-translatable.git"},
+    {"type": "vcs", "url": "https://github.com/hgabka/doctrine-translatable-bundle.git"},
+    {"type": "vcs", "url": "https://github.com/hgabka/acl-bundle.git"},
+    {"type": "vcs", "url": "https://github.com/hgabka/security-acl.git"},
+    {"type": "vcs", "url": "https://github.com/hgabka/media-bundle.git"},
+    {"type": "vcs", "url": "https://github.com/hgabka/seo-bundle.git"}
+]
+```
+
 ## Konfiguráció
 
 A bundle (`hgabka_seo`) saját konfigurációs fát nem definiál; a viselkedést paraméterek szabályozzák:
@@ -96,3 +112,16 @@ $order->orderItems[] = (new OrderItem())
 ```twig
 {{ google_analytics_track_order(order) }}
 ```
+
+## Tesztek
+
+A `require-dev` tartalmazza a szükséges csomagokat, a hgabka bundle-ök repóit a `composer.json` `repositories` szekciója adja, így a bundle önmagában is telepíthető és tesztelhető (a `git@github.com:...` url-ekhez SSH kulcs kell, kulcs nélkül cseréld őket `https://github.com/...`-ra):
+
+```bash
+composer install
+vendor/bin/phpunit
+```
+
+## Licenc
+
+MIT, lásd: [LICENSE](LICENSE).
