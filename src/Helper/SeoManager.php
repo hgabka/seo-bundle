@@ -5,12 +5,19 @@ namespace Hgabka\SeoBundle\Helper;
 use Doctrine\ORM\EntityManagerInterface;
 use Hgabka\NodeBundle\Entity\AbstractPage;
 use Hgabka\SeoBundle\Entity\Seo;
+use Hgabka\UtilsBundle\Helper\HgabkaUtils;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 
 class SeoManager
 {
     /** @var EntityManagerInterface */
     protected $manager;
+
+    /** @var HgabkaUtils */
+    protected $hgabkaUtils;
+
+    /** @var string */
+    protected $projectDir;
 
     /**
      * Website title defined in your parameters.
@@ -30,9 +37,11 @@ class SeoManager
     /**
      * SeoManager constructor.
      */
-    public function __construct(EntityManagerInterface $manager, string $websiteTitle)
+    public function __construct(EntityManagerInterface $manager, HgabkaUtils $hgabkaUtils, string $websiteTitle, string $projectDir)
     {
         $this->manager = $manager;
+        $this->hgabkaUtils = $hgabkaUtils;
+        $this->projectDir = $projectDir;
         $this->websiteTitle = $websiteTitle;
     }
 
@@ -152,13 +161,26 @@ class SeoManager
      */
     public function getImageDimensions($src): ?array
     {
-        try {
-            [$width, $height] = getimagesize($src);
-        } catch (\Exception $e) {
+        // Same-host URLs are always expected to resolve to a local file (they come from asset()).
+        // If the file is missing on disk (e.g. the source media is gone), never fall through to
+        // getimagesize() with the original URL: that would issue a synchronous HTTP request back
+        // into this very application, which can exhaust the webserver's worker pool under load.
+        $host = $this->hgabkaUtils->getSchemeAndHttpHost();
+        if (0 === strpos($src, $host.'/')) {
+            $file = $this->projectDir.'/public'.substr($src, \strlen($host));
+            if (!is_file($file)) {
+                return null;
+            }
+            $src = $file;
+        }
+
+        $dimensions = @getimagesize($src);
+
+        if (false === $dimensions) {
             return null;
         }
 
-        return ['width' => $width, 'height' => $height];
+        return ['width' => $dimensions[0], 'height' => $dimensions[1]];
     }
 
     /**
